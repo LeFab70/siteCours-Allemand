@@ -120,6 +120,7 @@ export class NavbarComponent {
     { label: 'Examens', href: '#examens' },
     { label: 'Visa', href: '#visa' },
     { label: 'Tarifs', href: '#tarifs' },
+    { label: 'Avis', href: '#avis' },
     { label: 'Contact', href: '#contact' },
   ];
 

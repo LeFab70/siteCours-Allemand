@@ -7,6 +7,8 @@ import { VisaComponent } from './components/visa/visa.component';
 import { PricingComponent } from './components/pricing/pricing.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { TestimonialsComponent } from './components/testimonials/testimonials.component';
+import { ChatbotComponent } from './components/chatbot/chatbot.component';
 
 @Component({
   selector: 'app-root',
@@ -18,8 +20,10 @@ import { FooterComponent } from './components/footer/footer.component';
     ExamsComponent,
     VisaComponent,
     PricingComponent,
+    TestimonialsComponent,
     ContactComponent,
     FooterComponent,
+    ChatbotComponent,
   ],
   template: `
     <app-navbar [scrolled]="scrolled()" />
@@ -29,9 +33,12 @@ import { FooterComponent } from './components/footer/footer.component';
       <app-exams id="examens" />
       <app-visa id="visa" />
       <app-pricing id="tarifs" />
+      <app-testimonials id="avis" />
       <app-contact id="contact" />
     </main>
     <app-footer />
+
+    <app-chatbot />
 
     @if (showBackToTop()) {
       <button
