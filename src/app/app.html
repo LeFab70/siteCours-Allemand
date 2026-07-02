@@ -1,0 +1,632 @@
+<!-- ============ BARRE DE NAVIGATION ============ -->
+<header
+  class="fixed top-0 inset-x-0 z-50 transition-all duration-300"
+  [class.bg-white]="pageDefilee()"
+  [class.shadow-lg]="pageDefilee()"
+  [class.py-2]="pageDefilee()"
+  [class.py-4]="!pageDefilee()"
+>
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
+    <!-- Logo -->
+    <button (click)="scrollTo('accueil')" class="flex items-center gap-3 group">
+      <div
+        class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-navy to-brand-blue-light flex items-center justify-center text-white font-black text-lg shadow-md group-hover:scale-110 transition-transform"
+      >
+        ML
+      </div>
+      <div class="text-left leading-none">
+        <span
+          class="block font-extrabold text-lg tracking-tight transition-colors"
+          [class.text-brand-navy]="pageDefilee()"
+          [class.text-white]="!pageDefilee()"
+          >MAG LINGUA</span
+        >
+        <span class="block text-[11px] font-semibold tracking-widest text-brand-orange">INSTITUT</span>
+      </div>
+    </button>
+
+    <!-- Liens (desktop) -->
+    <ul class="hidden lg:flex items-center gap-1">
+      @for (link of navLinks; track link.anchor) {
+        <li>
+          <button
+            (click)="scrollTo(link.anchor)"
+            class="px-4 py-2 rounded-full text-sm font-semibold transition-all hover:bg-brand-orange/10 hover:text-brand-orange"
+            [class.text-brand-navy]="pageDefilee()"
+            [class.text-white]="!pageDefilee()"
+          >
+            {{ link.label }}
+          </button>
+        </li>
+      }
+    </ul>
+
+    <div class="flex items-center gap-3">
+      <button
+        (click)="scrollTo('contact')"
+        class="hidden sm:inline-flex shine-effect items-center gap-2 bg-brand-orange hover:bg-brand-orange-light text-white font-semibold text-sm px-5 py-2.5 rounded-full shadow-lg shadow-brand-orange/30 hover:-translate-y-0.5 transition-all"
+      >
+        S'inscrire
+      </button>
+
+      <!-- Bouton menu mobile -->
+      <button
+        (click)="toggleMenu()"
+        class="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg"
+        [class.text-brand-navy]="pageDefilee()"
+        [class.text-white]="!pageDefilee()"
+        aria-label="Menu"
+      >
+        <svg class="w-7 h-7" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          @if (!menuOuvert()) {
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+          } @else {
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          }
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Menu mobile déroulant -->
+  @if (menuOuvert()) {
+    <div class="lg:hidden bg-white shadow-xl mx-4 mt-2 rounded-2xl overflow-hidden animate-[fade-up_0.3s_ease]">
+      <ul class="flex flex-col p-2">
+        @for (link of navLinks; track link.anchor) {
+          <li>
+            <button
+              (click)="scrollTo(link.anchor)"
+              class="w-full text-left px-4 py-3 rounded-xl font-semibold text-brand-navy hover:bg-brand-cream transition"
+            >
+              {{ link.label }}
+            </button>
+          </li>
+        }
+        <li class="p-2">
+          <button
+            (click)="scrollTo('contact')"
+            class="w-full bg-brand-orange text-white font-semibold py-3 rounded-xl"
+          >
+            S'inscrire
+          </button>
+        </li>
+      </ul>
+    </div>
+  }
+</header>
+
+<!-- ============ HERO / ACCUEIL ============ -->
+<section id="accueil" class="relative min-h-screen flex items-center animated-gradient overflow-hidden pt-28 pb-16">
+  <!-- Bulles décoratives -->
+  <div class="absolute inset-0 overflow-hidden pointer-events-none">
+    <div class="absolute -top-20 -left-16 w-72 h-72 bg-white/10 rounded-full blur-2xl"></div>
+    <div class="absolute top-1/3 -right-10 w-80 h-80 bg-brand-orange/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-1/4 w-64 h-64 bg-white/10 rounded-full blur-2xl"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center w-full">
+    <!-- Colonne texte -->
+    <div class="text-white">
+      <span
+        class="inline-flex items-center gap-2 bg-white/15 backdrop-blur px-4 py-1.5 rounded-full text-sm font-medium mb-6 animate-[fade-up_0.6s_ease]"
+      >
+        <span class="w-2 h-2 rounded-full bg-brand-orange animate-ping"></span>
+        Formation Professionnelle • Langues & Informatique
+      </span>
+
+      <h1 class="text-4xl sm:text-6xl font-black leading-tight animate-[fade-up_0.7s_ease]">
+        Apprenez, progressez,
+        <span class="text-brand-orange-light">ouvrez vos horizons&nbsp;!</span>
+      </h1>
+
+      <p class="mt-6 text-lg text-white/85 max-w-xl animate-[fade-up_0.9s_ease]">
+        Des langues, des compétences, des opportunités pour un avenir sans frontières.
+        Rejoignez <strong>MAG LINGUA INSTITUT</strong> à Yassa.
+      </p>
+
+      <div class="mt-6 flex items-center gap-2 text-white/85 animate-[fade-up_1s_ease]">
+        <svg class="w-5 h-5 text-brand-orange-light shrink-0" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/>
+        </svg>
+        <span>Situé à Yassa — Immeuble voisin à l'Institut Supérieur la Perle</span>
+      </div>
+
+      <div class="mt-8 flex flex-wrap gap-4 animate-[fade-up_1.1s_ease]">
+        <button
+          (click)="scrollTo('langues')"
+          class="shine-effect bg-white text-brand-navy font-bold px-7 py-3.5 rounded-full shadow-xl hover:-translate-y-1 transition-all"
+        >
+          Découvrir les cours
+        </button>
+        <button
+          (click)="scrollTo('contact')"
+          class="border-2 border-white/60 text-white font-bold px-7 py-3.5 rounded-full hover:bg-white hover:text-brand-navy transition-all"
+        >
+          Nous contacter
+        </button>
+      </div>
+
+      <!-- Drapeaux flottants -->
+      <div class="mt-10 flex gap-3 text-3xl">
+        @for (l of langues; track l.nom; let i = $index) {
+          <span
+            class="cursor-default select-none animate-float"
+            [style.animation-delay]="i * 0.25 + 's'"
+            [title]="l.nom"
+            >{{ l.drapeau }}</span
+          >
+        }
+      </div>
+    </div>
+
+    <!-- Colonne carte compte à rebours -->
+    <div class="relative animate-[zoom-in_0.9s_ease]">
+      <div class="bg-white/95 backdrop-blur rounded-3xl shadow-2xl p-8 max-w-md mx-auto">
+        <div class="flex items-center gap-3 mb-2">
+          <span class="text-2xl">🎓</span>
+          <h3 class="text-brand-navy font-extrabold text-xl">Début des inscriptions</h3>
+        </div>
+        <p class="text-gray-500 text-sm mb-6">Ne manquez pas la rentrée — le <strong>{{ debut }}</strong>.</p>
+
+        <!-- Compteur -->
+        <div class="grid grid-cols-4 gap-3 mb-6">
+          @for (unit of [
+            { v: compteur().jours, l: 'Jours' },
+            { v: compteur().heures, l: 'Heures' },
+            { v: compteur().minutes, l: 'Min' },
+            { v: compteur().secondes, l: 'Sec' }
+          ]; track unit.l) {
+            <div class="bg-gradient-to-b from-brand-navy to-brand-blue text-white rounded-2xl py-3 text-center shadow-md">
+              <div class="text-2xl sm:text-3xl font-black tabular-nums">{{ unit.v }}</div>
+              <div class="text-[10px] uppercase tracking-wider text-white/70">{{ unit.l }}</div>
+            </div>
+          }
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="bg-brand-cream rounded-2xl p-4 text-center">
+            <div class="text-xs text-gray-500 font-medium">Frais d'inscription</div>
+            <div class="text-brand-orange font-extrabold text-lg">{{ frais }}</div>
+          </div>
+          <div class="bg-brand-cream rounded-2xl p-4 text-center">
+            <div class="text-xs text-gray-500 font-medium">Langues</div>
+            <div class="text-brand-navy font-extrabold text-lg">{{ langues.length }} au choix</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LANGUES ============ -->
+<section id="langues" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-14" appReveal>
+      <span class="text-brand-orange font-bold tracking-widest text-sm uppercase">Cours de langues</span>
+      <h2 class="text-3xl sm:text-5xl font-black text-brand-navy mt-2">Parlez la langue du monde</h2>
+      <p class="text-gray-500 mt-4 max-w-2xl mx-auto">
+        Six langues enseignées par des formateurs passionnés. Cliquez sur une langue pour vous pré-inscrire.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (l of langues; track l.nom; let i = $index) {
+        <button
+          (click)="choisirLangue(l.nom)"
+          (mouseenter)="langueSurvolee.set(l.nom)"
+          (mouseleave)="langueSurvolee.set(null)"
+          appReveal
+          class="group relative text-left rounded-3xl p-7 overflow-hidden shine-effect shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+          [class]="'bg-gradient-to-br ' + l.couleur + ' reveal-delay-' + ((i % 5) + 1)"
+        >
+          <div class="absolute -right-4 -top-4 text-8xl opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all">
+            {{ l.drapeau }}
+          </div>
+          <div class="relative text-white">
+            <span class="text-5xl">{{ l.drapeau }}</span>
+            <h3 class="text-2xl font-extrabold mt-4">{{ l.nom }}</h3>
+            <p class="text-white/85 mt-1">{{ l.slogan }}</p>
+            <span class="inline-flex items-center gap-1 mt-5 font-semibold text-sm">
+              Je m'inscris
+              <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </span>
+          </div>
+        </button>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXAMENS ============ -->
+<section id="examens" class="py-24 bg-brand-cream">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12" appReveal>
+      <span class="text-brand-orange font-bold tracking-widest text-sm uppercase">Certifications</span>
+      <h2 class="text-3xl sm:text-5xl font-black text-brand-navy mt-2">Préparation aux examens</h2>
+      <p class="text-gray-500 mt-4 max-w-2xl mx-auto">
+        Nous vous préparons aux certifications internationales reconnues.
+      </p>
+    </div>
+
+    <!-- Filtres -->
+    <div class="flex flex-wrap justify-center gap-2 mb-10" appReveal>
+      @for (langue of languesExamens(); track langue) {
+        <button
+          (click)="setFiltre(langue)"
+          class="px-5 py-2 rounded-full font-semibold text-sm transition-all"
+          [class]="filtreExamen() === langue
+            ? 'bg-brand-navy text-white shadow-lg scale-105'
+            : 'bg-white text-brand-navy hover:bg-brand-orange/10'"
+        >
+          {{ langue }}
+        </button>
+      }
+    </div>
+
+    <!-- Grille d'examens -->
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      @for (ex of examensFiltres(); track ex.sigle) {
+        <div
+          class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all border-l-4 border-brand-orange animate-[fade-up_0.4s_ease]"
+        >
+          <div class="flex items-start justify-between">
+            <h3 class="text-2xl font-black" [class]="ex.accent">{{ ex.sigle }}</h3>
+            <span class="text-xs font-semibold bg-brand-cream text-brand-navy px-3 py-1 rounded-full">
+              {{ ex.langue }}
+            </span>
+          </div>
+          <p class="text-gray-600 mt-2 text-sm">{{ ex.description }}</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISA ============ -->
+<section id="visa" class="py-24 bg-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-14 items-center">
+    <div appReveal>
+      <span class="text-brand-orange font-bold tracking-widest text-sm uppercase">Mobilité internationale</span>
+      <h2 class="text-3xl sm:text-5xl font-black text-brand-navy mt-2">
+        Procédure voyage & assistance visa
+      </h2>
+      <p class="text-gray-500 mt-4">
+        De la constitution du dossier à l'obtention de votre visa, nous vous accompagnons à chaque étape.
+      </p>
+
+      <div class="mt-8 space-y-4">
+        @for (s of servicesVisa; track s.titre; let i = $index) {
+          <div
+            class="flex items-center gap-4 bg-brand-cream rounded-2xl p-4 hover:bg-brand-blue/5 transition-all reveal"
+            appReveal
+            [class]="'reveal-delay-' + (i + 1)"
+          >
+            <div class="w-12 h-12 shrink-0 rounded-xl bg-gradient-to-br from-brand-navy to-brand-blue-light flex items-center justify-center text-xl shadow-md">
+              {{ s.icone }}
+            </div>
+            <p class="font-semibold text-brand-navy">{{ s.titre }}</p>
+          </div>
+        }
+      </div>
+
+      <button
+        (click)="scrollTo('contact')"
+        class="mt-8 shine-effect inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-light text-white font-bold px-7 py-3.5 rounded-full shadow-lg shadow-brand-orange/30 hover:-translate-y-1 transition-all"
+      >
+        ✈️ Démarrer mon projet
+      </button>
+    </div>
+
+    <div class="relative" appReveal>
+      <div class="animated-gradient rounded-3xl p-1 shadow-2xl animate-float">
+        <div class="bg-white rounded-[22px] p-8">
+          <div class="text-6xl text-center mb-4">🌍</div>
+          <h3 class="text-2xl font-black text-brand-navy text-center">Un avenir sans frontières</h3>
+          <p class="text-gray-500 text-center mt-2">
+            Étudiez, voyagez, travaillez à l'international en toute sérénité.
+          </p>
+          <div class="grid grid-cols-3 gap-3 mt-6 text-center">
+            <div class="bg-brand-cream rounded-2xl py-4">
+              <div class="text-2xl font-black text-brand-orange">6</div>
+              <div class="text-[11px] text-gray-500 font-medium">Langues</div>
+            </div>
+            <div class="bg-brand-cream rounded-2xl py-4">
+              <div class="text-2xl font-black text-brand-navy">7</div>
+              <div class="text-[11px] text-gray-500 font-medium">Certifs</div>
+            </div>
+            <div class="bg-brand-cream rounded-2xl py-4">
+              <div class="text-2xl font-black text-brand-green">100%</div>
+              <div class="text-[11px] text-gray-500 font-medium">Suivi</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ INFOS ============ -->
+<section id="infos" class="py-24 bg-brand-navy text-white relative overflow-hidden">
+  <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-orange/20 rounded-full blur-3xl"></div>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 relative">
+    <div class="grid lg:grid-cols-3 gap-8 items-center">
+      <div class="lg:col-span-2" appReveal>
+        <h2 class="text-3xl sm:text-5xl font-black">Prêt à commencer&nbsp;?</h2>
+        <p class="text-white/80 mt-4 max-w-xl">
+          Les inscriptions démarrent le <strong class="text-brand-orange-light">{{ debut }}</strong>.
+          Réservez votre place dès maintenant.
+        </p>
+        <div class="grid sm:grid-cols-2 gap-4 mt-8">
+          <div class="bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/15 transition">
+            <div class="text-3xl">📝</div>
+            <div class="text-sm text-white/70 mt-2">Frais d'inscription</div>
+            <div class="text-2xl font-black text-brand-orange-light">{{ frais }}</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/15 transition">
+            <div class="text-3xl">📅</div>
+            <div class="text-sm text-white/70 mt-2">Début d'inscription</div>
+            <div class="text-2xl font-black text-brand-orange-light">{{ debut }}</div>
+          </div>
+        </div>
+        <div class="flex items-start gap-3 mt-6 text-white/80">
+          <span class="text-xl">📍</span>
+          <span>{{ info.adresse }}</span>
+        </div>
+      </div>
+
+      <div appReveal class="reveal-delay-2">
+        <img
+          src="flyer.png"
+          alt="Flyer MAG LINGUA INSTITUT"
+          class="rounded-3xl shadow-2xl w-full max-w-xs mx-auto hover:scale-105 transition-transform duration-500"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="py-24 bg-brand-cream">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-14" appReveal>
+      <span class="text-brand-orange font-bold tracking-widest text-sm uppercase">Contact</span>
+      <h2 class="text-3xl sm:text-5xl font-black text-brand-navy mt-2">Contactez-nous</h2>
+      <p class="text-gray-500 mt-4 max-w-2xl mx-auto">
+        Une question&nbsp;? Un projet&nbsp;? Écrivez-nous, nous vous répondons rapidement.
+      </p>
+    </div>
+
+    <div class="grid lg:grid-cols-5 gap-8">
+      <!-- Coordonnées -->
+      <div class="lg:col-span-2 space-y-4" appReveal>
+        <div class="bg-white rounded-3xl p-7 shadow-lg">
+          <h3 class="font-extrabold text-brand-navy text-xl mb-5">Nos coordonnées</h3>
+
+          <div class="space-y-4">
+            @for (tel of info.telephones; track tel) {
+              <a [href]="'tel:+237' + tel.split(' ').join('')" class="flex items-center gap-4 group">
+                <div class="w-11 h-11 rounded-full bg-brand-green/10 text-brand-green flex items-center justify-center pulse-ring group-hover:scale-110 transition">
+                  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79a15.53 15.53 0 006.59 6.59l2.2-2.2a1 1 0 011.02-.24 11.36 11.36 0 003.56.57 1 1 0 011 1V20a1 1 0 01-1 1A17 17 0 013 4a1 1 0 011-1h3.5a1 1 0 011 1c0 1.24.2 2.45.57 3.57a1 1 0 01-.25 1.02l-2.2 2.2z"/></svg>
+                </div>
+                <div>
+                  <div class="text-xs text-gray-400">Téléphone</div>
+                  <div class="font-bold text-brand-navy">{{ tel }}</div>
+                </div>
+              </a>
+            }
+
+            <a [href]="'mailto:' + info.email" class="flex items-center gap-4 group">
+              <div class="w-11 h-11 rounded-full bg-brand-orange/10 text-brand-orange flex items-center justify-center group-hover:scale-110 transition">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5z"/></svg>
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs text-gray-400">Email</div>
+                <div class="font-bold text-brand-navy truncate">{{ info.email }}</div>
+              </div>
+            </a>
+
+            <a [href]="'https://' + info.siteWeb" target="_blank" rel="noopener" class="flex items-center gap-4 group">
+              <div class="w-11 h-11 rounded-full bg-brand-blue/10 text-brand-blue flex items-center justify-center group-hover:scale-110 transition">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm6.93 6h-2.95a15.7 15.7 0 00-1.38-3.56A8.03 8.03 0 0118.93 8zM12 4c.83 1.2 1.48 2.53 1.91 4h-3.82c.43-1.47 1.08-2.8 1.91-4zM4.26 14a7.96 7.96 0 010-4h3.38a16.6 16.6 0 000 4H4.26zm.81 2h2.95c.35 1.28.82 2.5 1.38 3.56A8.03 8.03 0 015.07 16zm2.95-8H5.07a8.03 8.03 0 014.33-3.56A15.7 15.7 0 008.02 8zM12 20c-.83-1.2-1.48-2.53-1.91-4h3.82A13.9 13.9 0 0112 20zm2.34-6H9.66a14.7 14.7 0 010-4h4.68a14.7 14.7 0 010 4zm.32 5.56c.56-1.06 1.03-2.28 1.38-3.56h2.95a8.03 8.03 0 01-4.33 3.56zM16.36 14a16.6 16.6 0 000-4h3.38a7.96 7.96 0 010 4h-3.38z"/></svg>
+              </div>
+              <div class="min-w-0">
+                <div class="text-xs text-gray-400">Site web</div>
+                <div class="font-bold text-brand-navy truncate">{{ info.siteWeb }}</div>
+              </div>
+            </a>
+
+            <div class="flex items-start gap-4">
+              <div class="w-11 h-11 shrink-0 rounded-full bg-brand-navy/10 text-brand-navy flex items-center justify-center">
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
+              </div>
+              <div>
+                <div class="text-xs text-gray-400">Adresse</div>
+                <div class="font-semibold text-brand-navy text-sm">{{ info.adresse }}</div>
+              </div>
+            </div>
+          </div>
+
+          <a
+            [href]="lienWhatsapp"
+            target="_blank"
+            rel="noopener"
+            class="mt-6 w-full inline-flex items-center justify-center gap-2 bg-brand-green hover:bg-emerald-600 text-white font-bold py-3.5 rounded-full shadow-lg hover:-translate-y-0.5 transition-all"
+          >
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.77-.87-2.04-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.06 2.87 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.77-.72 2.02-1.42.25-.7.25-1.29.17-1.42-.07-.13-.27-.2-.57-.35zM12 2a10 10 0 00-8.6 15.06L2 22l5.06-1.33A10 10 0 1012 2z"/></svg>
+            Discuter sur WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Formulaire -->
+      <div class="lg:col-span-3" appReveal>
+        <div class="bg-white rounded-3xl p-8 shadow-lg h-full">
+          @if (!envoye()) {
+            <form (ngSubmit)="soumettre()" #f="ngForm" class="space-y-5">
+              <div class="grid sm:grid-cols-2 gap-5">
+                <div>
+                  <label class="block text-sm font-semibold text-brand-navy mb-1.5">Nom complet *</label>
+                  <input
+                    type="text"
+                    name="nom"
+                    [ngModel]="nom()"
+                    (ngModelChange)="nom.set($event)"
+                    placeholder="Votre nom"
+                    class="w-full rounded-xl border border-gray-200 px-4 py-3 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 outline-none transition"
+                  />
+                  @if (nom() && !nomValide()) {
+                    <p class="text-xs text-red-500 mt-1">Entrez au moins 2 caractères.</p>
+                  }
+                </div>
+                <div>
+                  <label class="block text-sm font-semibold text-brand-navy mb-1.5">Téléphone</label>
+                  <input
+                    type="tel"
+                    name="telephone"
+                    [ngModel]="telephone()"
+                    (ngModelChange)="telephone.set($event)"
+                    placeholder="6XX XXX XXX"
+                    class="w-full rounded-xl border border-gray-200 px-4 py-3 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 outline-none transition"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-brand-navy mb-1.5">Email *</label>
+                <input
+                  type="email"
+                  name="email"
+                  [ngModel]="email()"
+                  (ngModelChange)="email.set($event)"
+                  placeholder="vous@exemple.com"
+                  class="w-full rounded-xl border border-gray-200 px-4 py-3 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 outline-none transition"
+                />
+                @if (email() && !emailValide()) {
+                  <p class="text-xs text-red-500 mt-1">Adresse email invalide.</p>
+                }
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-brand-navy mb-1.5">Je suis intéressé(e) par</label>
+                <select
+                  name="interet"
+                  [ngModel]="interet()"
+                  (ngModelChange)="interet.set($event)"
+                  class="w-full rounded-xl border border-gray-200 px-4 py-3 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 outline-none transition bg-white"
+                >
+                  <option value="">— Choisir —</option>
+                  @for (l of langues; track l.nom) {
+                    <option [value]="l.nom">Cours de {{ l.nom }}</option>
+                  }
+                  <option value="Préparation examen">Préparation aux examens</option>
+                  <option value="Assistance visa">Assistance visa</option>
+                  <option value="Informatique">Formation informatique</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-sm font-semibold text-brand-navy mb-1.5">Message *</label>
+                <textarea
+                  name="message"
+                  rows="4"
+                  [ngModel]="message()"
+                  (ngModelChange)="message.set($event)"
+                  placeholder="Votre message..."
+                  class="w-full rounded-xl border border-gray-200 px-4 py-3 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 outline-none transition resize-none"
+                ></textarea>
+                @if (message() && !messageValide()) {
+                  <p class="text-xs text-red-500 mt-1">Le message doit contenir au moins 10 caractères.</p>
+                }
+              </div>
+
+              <button
+                type="submit"
+                [disabled]="!formulaireValide() || envoiEnCours()"
+                class="w-full shine-effect inline-flex items-center justify-center gap-2 bg-brand-orange hover:bg-brand-orange-light text-white font-bold py-4 rounded-full shadow-lg shadow-brand-orange/30 hover:-translate-y-0.5 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+              >
+                @if (envoiEnCours()) {
+                  <svg class="animate-spin w-5 h-5" viewBox="0 0 24 24" fill="none">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path>
+                  </svg>
+                  Envoi en cours...
+                } @else {
+                  Envoyer le message
+                }
+              </button>
+            </form>
+          } @else {
+            <!-- Confirmation -->
+            <div class="h-full flex flex-col items-center justify-center text-center py-10 animate-[bounce-in_0.6s_ease]">
+              <div class="w-20 h-20 rounded-full bg-brand-green/15 text-brand-green flex items-center justify-center text-4xl mb-6">
+                ✓
+              </div>
+              <h3 class="text-2xl font-black text-brand-navy">Message envoyé&nbsp;!</h3>
+              <p class="text-gray-500 mt-2 max-w-sm">
+                Merci {{ nom() }}, votre demande a bien été prise en compte.
+                Notre équipe vous contactera très bientôt.
+              </p>
+              <button
+                (click)="nouveauMessage()"
+                class="mt-6 border-2 border-brand-navy text-brand-navy font-semibold px-6 py-2.5 rounded-full hover:bg-brand-navy hover:text-white transition"
+              >
+                Envoyer un autre message
+              </button>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PIED DE PAGE ============ -->
+<footer class="bg-brand-navy text-white/80 pt-14 pb-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="grid md:grid-cols-3 gap-10">
+      <div>
+        <div class="flex items-center gap-3">
+          <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-brand-orange to-brand-orange-light flex items-center justify-center text-white font-black">ML</div>
+          <div class="leading-none">
+            <span class="block font-extrabold text-white text-lg">MAG LINGUA</span>
+            <span class="block text-[11px] tracking-widest text-brand-orange">INSTITUT</span>
+          </div>
+        </div>
+        <p class="mt-4 text-sm">
+          Des langues, des compétences, des opportunités pour un avenir sans frontières.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold mb-4">Navigation</h4>
+        <ul class="space-y-2 text-sm">
+          @for (link of navLinks; track link.anchor) {
+            <li>
+              <button (click)="scrollTo(link.anchor)" class="hover:text-brand-orange-light transition">
+                {{ link.label }}
+              </button>
+            </li>
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="text-white font-bold mb-4">Contact</h4>
+        <ul class="space-y-2 text-sm">
+          @for (tel of info.telephones; track tel) {
+            <li>📞 {{ tel }}</li>
+          }
+          <li>✉️ {{ info.email }}</li>
+          <li>🌐 {{ info.siteWeb }}</li>
+          <li>📘 {{ info.facebook }}</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-white/10 mt-10 pt-6 text-center text-sm text-white/50">
+      © {{ 2026 }} MAG LINGUA INSTITUT — Yassa. Tous droits réservés.
+    </div>
+  </div>
+</footer>

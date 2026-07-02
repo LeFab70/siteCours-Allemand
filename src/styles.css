@@ -1,0 +1,143 @@
+@import "tailwindcss";
+
+/* ===== Thème de la marque MAG LINGUA INSTITUT ===== */
+@theme {
+  --color-brand-navy: #0b2a5b;
+  --color-brand-blue: #12408f;
+  --color-brand-blue-light: #1e63d0;
+  --color-brand-orange: #f47a1f;
+  --color-brand-orange-light: #ff9d45;
+  --color-brand-green: #1fa463;
+  --color-brand-cream: #f4f7fc;
+
+  --font-display: "Poppins", "Segoe UI", sans-serif;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-gradient: gradient 8s ease infinite;
+}
+
+/* ===== Base ===== */
+:root {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", "Segoe UI", system-ui, sans-serif;
+  background-color: var(--color-brand-cream);
+  color: #1f2937;
+}
+
+/* ===== Keyframes / Animations CSS ===== */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-14px); }
+}
+
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes zoom-in {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes slide-left {
+  from { opacity: 0; transform: translateX(-50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-right {
+  from { opacity: 0; transform: translateX(50px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(244, 122, 31, 0.5); }
+  70% { box-shadow: 0 0 0 18px rgba(244, 122, 31, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(244, 122, 31, 0); }
+}
+
+@keyframes shine {
+  0% { transform: translateX(-120%) skewX(-20deg); }
+  60%, 100% { transform: translateX(220%) skewX(-20deg); }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); }
+  70% { transform: scale(0.95); }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ===== Classes utilitaires d'animation ===== */
+.animated-gradient {
+  background: linear-gradient(120deg, #0b2a5b, #12408f, #1e63d0, #f47a1f);
+  background-size: 300% 300%;
+  animation: gradient 12s ease infinite;
+}
+
+/* Révélation au scroll (via IntersectionObserver -> classe .in-view) */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  will-change: opacity, transform;
+}
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* Effet de brillance sur les boutons/cartes */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+.shine-effect::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: translateX(-120%) skewX(-20deg);
+}
+.shine-effect:hover::after {
+  animation: shine 0.9s ease;
+}
+
+.pulse-ring {
+  animation: pulse-ring 2s infinite;
+}
+
+/* Barre de défilement personnalisée */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #e8eef8; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#12408f, #f47a1f);
+  border-radius: 999px;
+}
