@@ -183,30 +183,69 @@ export class ChatbotComponent {
       .normalize('NFD')
       .replace(/[\u0300-\u036f]/g, '');
     const has = (...w: string[]) => w.some((x) => t.includes(x));
+    const pick = (choices: string[]) => choices[Math.floor(Math.random() * choices.length)];
 
-    if (has('bonjour', 'salut', 'coucou', 'hello', 'bonsoir'))
-      return 'Bonjour et bienvenue ! Souhaitez-vous des infos sur nos langues, nos tarifs, les examens ou l’assistance visa ?';
-    if (has('langue', 'cours', 'francais', 'anglais', 'italien', 'chinois', 'allemand', 'espagnol'))
-      return 'Nous proposons 6 langues : Français, Anglais, Italien, Chinois, Allemand et Espagnol 🌍. Laquelle vous intéresse ?';
-    if (has('prix', 'tarif', 'cout', 'frais', 'combien', 'montant'))
-      return 'Les frais d’inscription sont de 15 000 FCFA. Le tarif des cours dépend de la langue et du niveau — écrivez-nous pour un devis !';
-    if (has('inscri', 'quand', 'date', 'rentree', 'debut', 'commence'))
-      return 'Les inscriptions débutent le 15 Juillet 📅. Réservez votre place via le formulaire de contact !';
-    if (has('visa', 'voyage', 'etranger', 'partir', 'canada', 'ambassade'))
-      return 'Nous vous accompagnons de A à Z : conseils, dossier, prise de rendez-vous et suivi jusqu’à l’obtention du visa ✈️.';
-    if (has('examen', 'certif', 'tcf', 'ielts', 'toefl', 'goethe', 'telc', 'cils', 'plida'))
+    if (has('bonjour', 'salut', 'coucou', 'hello', 'bonsoir', 'hey'))
+      return pick([
+        'Bonjour et bienvenue chez MAG LINGUA INSTITUT ! 😊 Voulez-vous des infos sur nos langues, tarifs, examens ou l’assistance visa ?',
+        'Salut ! Ravi de vous accueillir 👋. Je peux vous renseigner sur les cours, certifications, inscriptions ou visas. Que souhaitez-vous savoir ?',
+      ]);
+
+    if (has('allemand', 'deutsch', 'goethe', 'telc'))
+      return 'Notre cours d’allemand prépare aux certifications TELC et Goethe-Zertifikat (A1 à C1) 🇩🇪. Voulez-vous vous pré-inscrire ?';
+    if (has('anglais', 'english', 'ielts', 'toefl'))
+      return 'En anglais, nous préparons à l’IELTS et au TOEFL, avec un focus sur l’oral 🇬🇧. Quel est votre niveau actuel ?';
+    if (has('francais', 'tcf', 'fle'))
+      return 'Notre cours de français couvre l’expression, la compréhension et la préparation au TCF 🇫🇷.';
+    if (has('italien', 'cils', 'plida'))
+      return 'L’italien chez nous, la langue de l’art et de la culture 🇮🇹, avec préparation CILS et PLIDA.';
+    if (has('chinois', 'mandarin', 'hsk'))
+      return 'Le chinois vous ouvre le marché de demain 🇨🇳. Des bases solides à l’oral comme à l’écrit.';
+    if (has('espagnol', 'espanol'))
+      return 'L’espagnol, une langue et plusieurs mondes 🇪🇸 ! Cours dynamiques pour communiquer vite.';
+
+    if (has('langue', 'cours', 'apprendre', 'formation'))
+      return 'Nous enseignons 6 langues : Français, Anglais, Italien, Chinois, Allemand et Espagnol 🌍. Laquelle vous intéresse ?';
+    if (has('niveau', 'debutant', 'a1', 'a2', 'b1', 'b2', 'c1', 'avance', 'intermediaire'))
+      return 'Nous accueillons tous les niveaux, du grand débutant (A1) au niveau avancé (C1). Un test de positionnement gratuit vous oriente 📊.';
+    if (has('duree', 'combien de temps', 'rythme', 'semaine', 'mois', 'seance', 'frequence'))
+      return 'Les sessions durent 2 à 3 mois selon le niveau, avec plusieurs séances/semaine. Formules intensives possibles ⏱️.';
+    if (has('en ligne', 'distance', 'presentiel', 'zoom', 'ligne', 'online'))
+      return 'Cours en présentiel à Yassa, et certaines formules en ligne 💻. Dites-nous votre préférence !';
+    if (has('prix', 'tarif', 'cout', 'frais', 'combien', 'montant', 'paiement', 'payer'))
+      return 'Frais d’inscription : 15 000 FCFA. Le tarif des cours dépend de la langue et du niveau — devis personnalisé et paiement échelonné possibles 💳.';
+    if (has('inscri', 'quand', 'date', 'rentree', 'debut', 'commence', 'place'))
+      return 'Les inscriptions débutent le 15 Juillet 📅. Réservez via le formulaire de contact ou passez à l’institut !';
+    if (has('visa', 'voyage', 'etranger', 'partir', 'canada', 'europe', 'ambassade', 'immigration', 'dossier'))
+      return 'Accompagnement de A à Z ✈️ : conseils, constitution du dossier, rendez-vous et suivi jusqu’à l’obtention du visa.';
+    if (has('examen', 'certif', 'diplome', 'attestation'))
       return 'Nous préparons aux certifications : TCF, TELC, Goethe-Zertifikat, IELTS, TOEFL, CILS et PLIDA 🎓.';
-    if (has('contact', 'telephone', 'numero', 'appeler', 'email', 'mail', 'whatsapp'))
-      return 'Contactez-nous au 679 800 266 / 696 649 878 ou par email : maglinguainstitut@gmail.com 📞';
-    if (has('adresse', 'ou ', 'situe', 'localisation', 'yassa', 'trouver'))
-      return 'Nous sommes à Yassa, dans l’immeuble voisin de l’Institut Supérieur la Perle 📍.';
-    if (has('horaire', 'heure', 'ouvert', 'ferme'))
-      return 'Nos équipes sont disponibles du lundi au samedi. Appelez-nous pour convenir d’un créneau !';
-    if (has('merci', 'super', 'genial', 'parfait'))
-      return 'Avec plaisir ! 😊 N’hésitez pas si vous avez d’autres questions.';
-    if (has('facebook', 'reseau', 'suivre', 'page'))
-      return 'Suivez-nous sur Facebook « Mag Lingua Institut » pour ne rien manquer 👍.';
-    return "Je n’ai pas toutes les réponses, mais notre équipe oui ! Écrivez-nous via le formulaire de contact ou au 679 800 266. Demandez-moi : langues, tarifs, examens, visa ou contact.";
+    if (has('informatique', 'ordinateur', 'bureautique', 'word', 'excel', 'programmation', 'code'))
+      return 'Oui ! Nous proposons aussi des formations en informatique et bureautique 🖥️. Demandez le programme.';
+    if (has('contact', 'telephone', 'numero', 'appeler', 'joindre', 'email', 'mail'))
+      return 'Contactez-nous au 679 800 266 / 696 649 878, par email maglinguainstitut@gmail.com, ou via WhatsApp 📞.';
+    if (has('whatsapp', 'wpp', 'chat'))
+      return 'Écrivez-nous sur WhatsApp au 679 800 266 💬 — bouton disponible dans la section Contact !';
+    if (has('adresse', 'ou ', 'situe', 'localisation', 'yassa', 'trouver', 'plan', 'venir'))
+      return 'Nous sommes à Yassa 📍, immeuble voisin de l’Institut Supérieur la Perle (Chez Mag Lingua Institut).';
+    if (has('horaire', 'heure', 'ouvert', 'ferme', 'disponible'))
+      return 'Nous vous accueillons du lundi au samedi. Appelez-nous pour convenir d’un créneau 🕘.';
+    if (has('avis', 'temoignage', 'reput', 'serieux', 'confiance'))
+      return 'Nos apprenants nous notent en moyenne 4,7/5 ⭐ ! Voir la section « Avis » du site.';
+    if (has('facebook', 'reseau', 'suivre', 'page', 'actualite'))
+      return 'Suivez-nous sur Facebook « Mag Lingua Institut » pour nos actualités et promos 👍.';
+    if (has('merci', 'super', 'genial', 'parfait', 'top'))
+      return pick([
+        'Avec plaisir ! 😊 N’hésitez pas si vous avez d’autres questions.',
+        'Je vous en prie ! Belle journée et à bientôt chez MAG LINGUA INSTITUT 🌟.',
+      ]);
+    if (has('au revoir', 'bye', 'a bientot', 'ciao'))
+      return 'À bientôt ! 👋 Pensez à réserver votre place, les inscriptions ouvrent le 15 Juillet.';
+
+    return pick([
+      'Bonne question ! Notre équipe pourra vous répondre en détail 😊. Demandez-moi : langues, niveaux, tarifs, examens, visa, horaires ou contact.',
+      'Je n’ai pas la réponse exacte, mais l’équipe oui ! Écrivez-nous via le formulaire ou au 679 800 266. Essayez : « tarifs », « visa » ou « inscriptions ».',
+    ]);
   }
 
   private scrollToBottom(): void {

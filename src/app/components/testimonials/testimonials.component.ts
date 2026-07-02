@@ -1,4 +1,12 @@
-import { Component, computed } from '@angular/core';
+import {
+  Component,
+  computed,
+  signal,
+  viewChild,
+  ElementRef,
+  OnInit,
+  OnDestroy,
+} from '@angular/core';
 import { RevealDirective } from '../../directives/reveal.directive';
 
 interface Review {
@@ -37,44 +45,84 @@ interface Review {
           </div>
         </div>
 
-        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          @for (r of reviews; track r.name) {
-            <div
-              appReveal
-              class="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100"
-            >
-              <div class="flex items-center gap-3">
-                <div
-                  class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold shadow"
-                  [style.background]="'linear-gradient(135deg,' + r.from + ',' + r.to + ')'"
-                >
-                  {{ r.initials }}
-                </div>
-                <div>
-                  <p class="font-bold text-navy">{{ r.name }}</p>
-                  <span
-                    class="text-[11px] font-semibold px-2 py-0.5 rounded-full"
-                    [class]="r.category === 'Voyage' ? 'bg-orange/15 text-orange' : 'bg-navy/10 text-navy'"
+        <div class="relative" (mouseenter)="paused.set(true)" (mouseleave)="paused.set(false)">
+          <!-- Bouton précédent -->
+          <button
+            (click)="scrollBy(-1)"
+            class="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white text-navy shadow-lg hover:bg-navy hover:text-white items-center justify-center transition"
+            aria-label="Avis précédent"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+
+          <!-- Piste défilable -->
+          <div
+            #track
+            (scroll)="onScroll()"
+            class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar pb-2"
+          >
+            @for (r of reviews; track r.name) {
+              <div
+                class="snap-start shrink-0 w-[85%] sm:w-[46%] lg:w-[31.5%] bg-white rounded-2xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 border border-gray-100"
+              >
+                <div class="flex items-center gap-3">
+                  <div
+                    class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold shadow"
+                    [style.background]="'linear-gradient(135deg,' + r.from + ',' + r.to + ')'"
                   >
-                    {{ r.category === 'Voyage' ? '✈️ Voyage & Visa' : '📚 Cours de langue' }}
+                    {{ r.initials }}
+                  </div>
+                  <div>
+                    <p class="font-bold text-navy">{{ r.name }}</p>
+                    <span
+                      class="text-[11px] font-semibold px-2 py-0.5 rounded-full"
+                      [class]="r.category === 'Voyage' ? 'bg-orange/15 text-orange' : 'bg-navy/10 text-navy'"
+                    >
+                      {{ r.category === 'Voyage' ? '✈️ Voyage & Visa' : '📚 Cours de langue' }}
+                    </span>
+                  </div>
+                </div>
+
+                <div class="mt-4 flex items-center gap-2">
+                  <span class="relative inline-block text-lg leading-none tracking-tight">
+                    <span class="text-gray-300">★★★★★</span>
+                    <span
+                      class="absolute inset-0 overflow-hidden text-amber-400"
+                      [style.width.%]="fillPercent(r.rating)"
+                      >★★★★★</span
+                    >
                   </span>
+                  <span class="text-sm font-semibold text-navy">{{ r.rating }}/5</span>
                 </div>
-              </div>
 
-              <div class="mt-4 flex items-center gap-2">
-                <span class="relative inline-block text-lg leading-none tracking-tight">
-                  <span class="text-gray-300">★★★★★</span>
-                  <span
-                    class="absolute inset-0 overflow-hidden text-amber-400"
-                    [style.width.%]="fillPercent(r.rating)"
-                    >★★★★★</span
-                  >
-                </span>
-                <span class="text-sm font-semibold text-navy">{{ r.rating }}/5</span>
+                <p class="text-gray-600 mt-3 text-sm leading-relaxed">« {{ r.comment }} »</p>
               </div>
+            }
+          </div>
 
-              <p class="text-gray-600 mt-3 text-sm leading-relaxed">« {{ r.comment }} »</p>
-            </div>
+          <!-- Bouton suivant -->
+          <button
+            (click)="scrollBy(1)"
+            class="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white text-navy shadow-lg hover:bg-navy hover:text-white items-center justify-center transition"
+            aria-label="Avis suivant"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Points indicateurs -->
+        <div class="flex justify-center gap-2 mt-6">
+          @for (r of reviews; track r.name; let i = $index) {
+            <button
+              (click)="goTo(i)"
+              class="h-2.5 rounded-full transition-all"
+              [class]="activeIndex() === i ? 'w-8 bg-orange' : 'w-2.5 bg-gray-300 hover:bg-gray-400'"
+              [attr.aria-label]="'Aller à l’avis ' + (i + 1)"
+            ></button>
           }
         </div>
       </div>
@@ -109,9 +157,72 @@ interface Review {
       </div>
     </section>
   `,
+  styles: [
+    `
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+    `,
+  ],
 })
-export class TestimonialsComponent {
+export class TestimonialsComponent implements OnInit, OnDestroy {
   facebookUrl = 'https://www.facebook.com/maglinguainstitut';
+
+  track = viewChild<ElementRef<HTMLDivElement>>('track');
+  activeIndex = signal(0);
+  paused = signal(false);
+  private timer?: ReturnType<typeof setInterval>;
+
+  ngOnInit(): void {
+    this.timer = setInterval(() => this.autoAdvance(), 5000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.timer) clearInterval(this.timer);
+  }
+
+  private step(): number {
+    const el = this.track()?.nativeElement;
+    if (!el) return 0;
+    const first = el.firstElementChild as HTMLElement | null;
+    const width = first?.getBoundingClientRect().width ?? el.clientWidth;
+    return width + 24; // + gap-6
+  }
+
+  scrollBy(direction: number): void {
+    const el = this.track()?.nativeElement;
+    if (!el) return;
+    el.scrollBy({ left: direction * this.step(), behavior: 'smooth' });
+  }
+
+  goTo(i: number): void {
+    const el = this.track()?.nativeElement;
+    if (!el) return;
+    el.scrollTo({ left: i * this.step(), behavior: 'smooth' });
+  }
+
+  onScroll(): void {
+    const el = this.track()?.nativeElement;
+    if (!el) return;
+    const s = this.step();
+    if (s > 0) this.activeIndex.set(Math.round(el.scrollLeft / s));
+  }
+
+  private autoAdvance(): void {
+    if (this.paused()) return;
+    const el = this.track()?.nativeElement;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    if (el.scrollLeft >= max - 5) {
+      el.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      this.scrollBy(1);
+    }
+  }
 
   reviews: Review[] = [
     {
