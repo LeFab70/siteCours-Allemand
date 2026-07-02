@@ -1,0 +1,93 @@
+import { Component, signal } from '@angular/core';
+import { RevealDirective } from '../../directives/reveal.directive';
+
+@Component({
+  selector: 'app-hero',
+  standalone: true,
+  imports: [RevealDirective],
+  template: `
+    <section
+      class="relative overflow-hidden bg-gradient-to-br from-navy via-navy-light to-navy-dark
+             bg-200% animate-gradient-move min-h-screen flex items-center pt-24"
+    >
+      <!-- decorative floating flags -->
+      <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
+        <span class="absolute top-24 left-[8%] text-6xl animate-float">🇫🇷</span>
+        <span class="absolute top-40 right-[12%] text-6xl animate-float" style="animation-delay:0.5s">🇬🇧</span>
+        <span class="absolute bottom-32 left-[15%] text-6xl animate-float" style="animation-delay:1s">🇩🇪</span>
+        <span class="absolute bottom-20 right-[20%] text-6xl animate-float" style="animation-delay:1.5s">🇪🇸</span>
+        <span class="absolute top-1/2 left-[45%] text-6xl animate-float" style="animation-delay:2s">🇮🇹</span>
+        <span class="absolute top-16 right-[40%] text-6xl animate-float" style="animation-delay:2.5s">🇨🇳</span>
+      </div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-12 items-center py-16">
+        <div appReveal>
+          <span class="inline-block bg-orange/20 text-orange font-semibold text-sm px-4 py-1.5 rounded-full mb-6">
+            Formation Professionnelle · Langues & Informatique
+          </span>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4">
+            MAG LINGUA <span class="shimmer-text">INSTITUT</span>
+          </h1>
+          <p class="text-xl sm:text-2xl font-bold text-orange mb-6">
+            Apprenez, progressez, ouvrez vos horizons !
+          </p>
+          <p class="text-white/80 text-lg mb-8 max-w-xl">
+            Situé à Yassa, immeuble voisin à l'Institut Supérieur la Perle — nous vous
+            accompagnons dans l'apprentissage des langues, la préparation aux certifications
+            internationales et vos démarches de visa.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="#langues"
+              class="bg-orange hover:bg-orange-light text-white font-semibold px-7 py-3.5
+                     rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+            >
+              Découvrir nos cours
+            </a>
+            <a
+              href="#contact"
+              class="border-2 border-white text-white font-semibold px-7 py-3.5 rounded-full
+                     hover:bg-white hover:text-navy transition-all duration-300 hover:-translate-y-1"
+            >
+              Nous contacter
+            </a>
+          </div>
+
+          <div class="flex items-center gap-6 mt-10 text-white/90">
+            <div class="flex items-center gap-2">
+              <span class="text-2xl">📍</span>
+              <span class="text-sm">Yassa, Chez Mag Lingua Institut</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative flex justify-center lg:justify-end" appReveal>
+          <div class="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-white/5 backdrop-blur-sm
+                      border border-white/20 flex items-center justify-center animate-float">
+            <div class="w-56 h-56 sm:w-72 sm:h-72 rounded-full bg-gradient-to-br from-orange to-teal
+                        flex items-center justify-center shadow-2xl">
+              <span class="text-white font-extrabold text-3xl sm:text-4xl text-center leading-tight px-4">
+                Des langues,<br />des compétences,<br />des opportunités
+              </span>
+            </div>
+            <!-- orbit flags -->
+            <span class="absolute -top-2 left-1/2 -translate-x-1/2 text-4xl">🇫🇷</span>
+            <span class="absolute top-1/4 -right-4 text-4xl">🇬🇧</span>
+            <span class="absolute bottom-1/4 -right-4 text-4xl">🇨🇳</span>
+            <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-4xl">🇩🇪</span>
+            <span class="absolute bottom-1/4 -left-4 text-4xl">🇮🇹</span>
+            <span class="absolute top-1/4 -left-4 text-4xl">🇪🇸</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- wave divider -->
+      <svg class="absolute bottom-0 left-0 w-full" viewBox="0 0 1440 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 50L60 45C120 40 240 30 360 33.3C480 37 600 53 720 58.3C840 63 960 57 1080 48.3C1200 40 1320 30 1380 25L1440 20V100H0V50Z" fill="white"/>
+      </svg>
+    </section>
+  `,
+})
+export class HeroComponent {
+  loaded = signal(true);
+}
