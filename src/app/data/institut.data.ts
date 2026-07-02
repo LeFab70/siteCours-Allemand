@@ -22,7 +22,17 @@ export interface InfoContact {
   email: string;
   siteWeb: string;
   facebook: string;
+  facebookUrl: string;
   adresse: string;
+}
+
+export interface Avis {
+  nom: string;
+  initiales: string;
+  categorie: 'Cours' | 'Voyage';
+  note: number; // sur 5
+  commentaire: string;
+  couleur: string; // classe de fond pour l'avatar
 }
 
 export const LANGUES: Langue[] = [
@@ -56,8 +66,66 @@ export const INFO_CONTACT: InfoContact = {
   email: 'maglinguainstitut@gmail.com',
   siteWeb: 'www.maglinguainstitut.com',
   facebook: 'Mag Lingua Institut',
+  facebookUrl: 'https://www.facebook.com/maglinguainstitut',
   adresse: "Yassa, Immeuble voisin à l'Institut Supérieur la Perle, Chez Mag Lingua Institut",
 };
 
 export const FRAIS_INSCRIPTION = '15 000 FCFA';
 export const DEBUT_INSCRIPTION = '15 Juillet';
+
+export const AVIS: Avis[] = [
+  {
+    nom: 'Sandrine M.',
+    initiales: 'SM',
+    categorie: 'Cours',
+    note: 5,
+    commentaire:
+      "Grâce au cours d'allemand, j'ai obtenu mon Goethe-Zertifikat B1 du premier coup. Formateurs au top !",
+    couleur: 'from-blue-500 to-blue-700',
+  },
+  {
+    nom: 'Boris T.',
+    initiales: 'BT',
+    categorie: 'Voyage',
+    note: 4.5,
+    commentaire:
+      "Accompagnement visa impeccable pour mon départ au Canada. Dossier accepté, un grand merci à l'équipe.",
+    couleur: 'from-orange-500 to-red-600',
+  },
+  {
+    nom: 'Aïcha D.',
+    initiales: 'AD',
+    categorie: 'Cours',
+    note: 5,
+    commentaire:
+      "Ambiance conviviale et méthode efficace en anglais. J'ai gagné en confiance pour l'IELTS.",
+    couleur: 'from-emerald-500 to-green-700',
+  },
+  {
+    nom: 'Georges N.',
+    initiales: 'GN',
+    categorie: 'Voyage',
+    note: 4,
+    commentaire:
+      'Conseils personnalisés et suivi sérieux de mon dossier. Je recommande pour tout projet à l’étranger.',
+    couleur: 'from-indigo-500 to-blue-800',
+  },
+  {
+    nom: 'Laëtitia K.',
+    initiales: 'LK',
+    categorie: 'Cours',
+    note: 4.5,
+    commentaire:
+      "Cours d'italien vivant et interactif. Les professeurs sont patients et vraiment à l'écoute.",
+    couleur: 'from-rose-500 to-pink-700',
+  },
+  {
+    nom: 'Yannick E.',
+    initiales: 'YE',
+    categorie: 'Voyage',
+    note: 5,
+    commentaire:
+      "De la prise de rendez-vous à l'obtention du visa, tout a été fluide. Une équipe de confiance.",
+    couleur: 'from-amber-500 to-orange-700',
+  },
+];

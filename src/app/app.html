@@ -347,6 +347,88 @@
   </div>
 </section>
 
+<!-- ============ AVIS CLIENTS ============ -->
+<section id="avis" class="py-24 bg-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12" appReveal>
+      <span class="text-brand-orange font-bold tracking-widest text-sm uppercase">Témoignages</span>
+      <h2 class="text-3xl sm:text-5xl font-black text-brand-navy mt-2">Ils nous font confiance</h2>
+
+      <!-- Note moyenne -->
+      <div class="mt-5 inline-flex items-center gap-3 bg-brand-cream rounded-full px-6 py-3">
+        <div class="relative inline-block text-2xl leading-none tracking-tight">
+          <div class="text-gray-300">★★★★★</div>
+          <div class="absolute inset-0 overflow-hidden text-amber-400" [style.width.%]="largeurEtoiles(noteMoyenne())">★★★★★</div>
+        </div>
+        <span class="font-black text-brand-navy text-xl">{{ noteMoyenne() }}/5</span>
+        <span class="text-gray-500 text-sm">• {{ avis.length }} avis</span>
+      </div>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (a of avis; track a.nom; let i = $index) {
+        <div
+          appReveal
+          [class]="'reveal-delay-' + ((i % 5) + 1)"
+          class="bg-brand-cream rounded-3xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="w-12 h-12 rounded-full bg-gradient-to-br flex items-center justify-center text-white font-bold shadow"
+              [class]="'bg-gradient-to-br ' + a.couleur"
+            >
+              {{ a.initiales }}
+            </div>
+            <div>
+              <div class="font-bold text-brand-navy">{{ a.nom }}</div>
+              <span
+                class="text-[11px] font-semibold px-2 py-0.5 rounded-full"
+                [class]="a.categorie === 'Voyage' ? 'bg-brand-orange/15 text-brand-orange' : 'bg-brand-blue/15 text-brand-blue'"
+              >
+                {{ a.categorie === 'Voyage' ? '✈️ Voyage & Visa' : '📚 Cours de langue' }}
+              </span>
+            </div>
+          </div>
+
+          <div class="relative inline-block text-lg leading-none tracking-tight mt-4">
+            <div class="text-gray-300">★★★★★</div>
+            <div class="absolute inset-0 overflow-hidden text-amber-400" [style.width.%]="largeurEtoiles(a.note)">★★★★★</div>
+          </div>
+          <span class="ml-2 text-sm font-semibold text-brand-navy">{{ a.note }}/5</span>
+
+          <p class="text-gray-600 mt-3 text-sm leading-relaxed">« {{ a.commentaire }} »</p>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+
+<!-- ============ SUIVEZ-NOUS FACEBOOK ============ -->
+<section class="py-16 bg-gradient-to-r from-[#1877f2] to-[#0b5fd4] text-white overflow-hidden">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-6" appReveal>
+    <div class="flex items-center gap-5">
+      <div class="w-16 h-16 shrink-0 rounded-2xl bg-white/15 flex items-center justify-center animate-float">
+        <svg class="w-9 h-9" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/>
+        </svg>
+      </div>
+      <div>
+        <h3 class="text-2xl sm:text-3xl font-black">Suivez-nous sur Facebook</h3>
+        <p class="text-white/85 mt-1">Actualités, promos et vie de l'institut — rejoignez la communauté !</p>
+      </div>
+    </div>
+    <a
+      [href]="info.facebookUrl"
+      target="_blank"
+      rel="noopener"
+      class="shine-effect shrink-0 inline-flex items-center gap-2 bg-white text-[#1877f2] font-bold px-7 py-3.5 rounded-full shadow-xl hover:-translate-y-1 transition-all"
+    >
+      <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0022 12z"/></svg>
+      Nous suivre
+    </a>
+  </div>
+</section>
+
 <!-- ============ INFOS ============ -->
 <section id="infos" class="py-24 bg-brand-navy text-white relative overflow-hidden">
   <div class="absolute -top-24 -right-24 w-96 h-96 bg-brand-orange/20 rounded-full blur-3xl"></div>
@@ -620,7 +702,11 @@
           }
           <li>✉️ {{ info.email }}</li>
           <li>🌐 {{ info.siteWeb }}</li>
-          <li>📘 {{ info.facebook }}</li>
+          <li>
+            <a [href]="info.facebookUrl" target="_blank" rel="noopener" class="hover:text-brand-orange-light transition">
+              📘 {{ info.facebook }}
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -630,3 +716,6 @@
     </div>
   </div>
 </footer>
+
+<!-- ============ CHATBOT IA ============ -->
+<app-chatbot />

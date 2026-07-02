@@ -1,6 +1,7 @@
 import { Component, computed, signal, OnInit, OnDestroy, inject, DOCUMENT } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RevealDirective } from './reveal.directive';
+import { Chatbot } from './chatbot/chatbot';
 import {
   LANGUES,
   EXAMENS,
@@ -8,6 +9,7 @@ import {
   INFO_CONTACT,
   FRAIS_INSCRIPTION,
   DEBUT_INSCRIPTION,
+  AVIS,
 } from './data/institut.data';
 
 interface Compteur {
@@ -20,7 +22,7 @@ interface Compteur {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, RevealDirective],
+  imports: [FormsModule, RevealDirective, Chatbot],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -34,13 +36,25 @@ export class App implements OnInit, OnDestroy {
   readonly info = INFO_CONTACT;
   readonly frais = FRAIS_INSCRIPTION;
   readonly debut = DEBUT_INSCRIPTION;
+  readonly avis = AVIS;
+
+  // Note moyenne des avis clients
+  readonly noteMoyenne = computed(() => {
+    const total = this.avis.reduce((s, a) => s + a.note, 0);
+    return Math.round((total / this.avis.length) * 10) / 10;
+  });
+
+  // Largeur (%) de remplissage des étoiles pour une note /5
+  largeurEtoiles(note: number): number {
+    return (note / 5) * 100;
+  }
 
   readonly navLinks = [
     { label: 'Accueil', anchor: 'accueil' },
     { label: 'Langues', anchor: 'langues' },
     { label: 'Examens', anchor: 'examens' },
     { label: 'Visa', anchor: 'visa' },
-    { label: 'Infos', anchor: 'infos' },
+    { label: 'Avis', anchor: 'avis' },
     { label: 'Contact', anchor: 'contact' },
   ];
 
