@@ -134,6 +134,15 @@ body {
   animation: pulse-ring 2s infinite;
 }
 
+/* Masquer la barre de défilement (carrousel) */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* Barre de défilement personnalisée */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: #e8eef8; }

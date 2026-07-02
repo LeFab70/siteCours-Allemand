@@ -1,4 +1,14 @@
-import { Component, computed, signal, OnInit, OnDestroy, inject, DOCUMENT } from '@angular/core';
+import {
+  Component,
+  computed,
+  signal,
+  OnInit,
+  OnDestroy,
+  inject,
+  DOCUMENT,
+  viewChild,
+  ElementRef,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RevealDirective } from './reveal.directive';
 import { Chatbot } from './chatbot/chatbot';
@@ -47,6 +57,51 @@ export class App implements OnInit, OnDestroy {
   // Largeur (%) de remplissage des étoiles pour une note /5
   largeurEtoiles(note: number): number {
     return (note / 5) * 100;
+  }
+
+  // ===== Carrousel d'avis =====
+  readonly pisteAvis = viewChild<ElementRef<HTMLDivElement>>('pisteAvis');
+  readonly indexAvis = signal(0);
+  readonly avisEnPause = signal(false);
+  private avisTimer?: ReturnType<typeof setInterval>;
+
+  private pasAvis(): number {
+    const el = this.pisteAvis()?.nativeElement;
+    if (!el) return 0;
+    const premier = el.firstElementChild as HTMLElement | null;
+    const largeur = premier?.getBoundingClientRect().width ?? el.clientWidth;
+    return largeur + 24; // + gap-6
+  }
+
+  defilerAvis(direction: number): void {
+    const el = this.pisteAvis()?.nativeElement;
+    if (!el) return;
+    el.scrollBy({ left: direction * this.pasAvis(), behavior: 'smooth' });
+  }
+
+  allerAvis(i: number): void {
+    const el = this.pisteAvis()?.nativeElement;
+    if (!el) return;
+    el.scrollTo({ left: i * this.pasAvis(), behavior: 'smooth' });
+  }
+
+  onScrollAvis(): void {
+    const el = this.pisteAvis()?.nativeElement;
+    if (!el) return;
+    const pas = this.pasAvis();
+    if (pas > 0) this.indexAvis.set(Math.round(el.scrollLeft / pas));
+  }
+
+  private avancerAvisAuto(): void {
+    if (this.avisEnPause()) return;
+    const el = this.pisteAvis()?.nativeElement;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    if (el.scrollLeft >= max - 5) {
+      el.scrollTo({ left: 0, behavior: 'smooth' });
+    } else {
+      this.defilerAvis(1);
+    }
   }
 
   readonly navLinks = [
@@ -98,11 +153,13 @@ export class App implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.majCompteur();
     this.timer = setInterval(() => this.majCompteur(), 1000);
+    this.avisTimer = setInterval(() => this.avancerAvisAuto(), 5000);
     this.doc.defaultView?.addEventListener('scroll', this.onScroll, { passive: true });
   }
 
   ngOnDestroy(): void {
     if (this.timer) clearInterval(this.timer);
+    if (this.avisTimer) clearInterval(this.avisTimer);
     this.doc.defaultView?.removeEventListener('scroll', this.onScroll);
   }
 

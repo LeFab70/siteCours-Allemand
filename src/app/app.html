@@ -365,39 +365,82 @@
       </div>
     </div>
 
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      @for (a of avis; track a.nom; let i = $index) {
-        <div
-          appReveal
-          [class]="'reveal-delay-' + ((i % 5) + 1)"
-          class="bg-brand-cream rounded-3xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all"
-        >
-          <div class="flex items-center gap-3">
-            <div
-              class="w-12 h-12 rounded-full bg-gradient-to-br flex items-center justify-center text-white font-bold shadow"
-              [class]="'bg-gradient-to-br ' + a.couleur"
-            >
-              {{ a.initiales }}
-            </div>
-            <div>
-              <div class="font-bold text-brand-navy">{{ a.nom }}</div>
-              <span
-                class="text-[11px] font-semibold px-2 py-0.5 rounded-full"
-                [class]="a.categorie === 'Voyage' ? 'bg-brand-orange/15 text-brand-orange' : 'bg-brand-blue/15 text-brand-blue'"
+    <div
+      class="relative"
+      (mouseenter)="avisEnPause.set(true)"
+      (mouseleave)="avisEnPause.set(false)"
+    >
+      <!-- Bouton précédent -->
+      <button
+        (click)="defilerAvis(-1)"
+        class="hidden md:flex absolute -left-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white text-brand-navy shadow-lg hover:bg-brand-navy hover:text-white items-center justify-center transition"
+        aria-label="Avis précédent"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+
+      <!-- Piste défilable -->
+      <div
+        #pisteAvis
+        (scroll)="onScrollAvis()"
+        class="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth no-scrollbar pb-2"
+      >
+        @for (a of avis; track a.nom) {
+          <div
+            class="snap-start shrink-0 w-[85%] sm:w-[46%] lg:w-[31.5%] bg-brand-cream rounded-3xl p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all"
+          >
+            <div class="flex items-center gap-3">
+              <div
+                class="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold shadow"
+                [class]="'bg-gradient-to-br ' + a.couleur"
               >
-                {{ a.categorie === 'Voyage' ? '✈️ Voyage & Visa' : '📚 Cours de langue' }}
-              </span>
+                {{ a.initiales }}
+              </div>
+              <div>
+                <div class="font-bold text-brand-navy">{{ a.nom }}</div>
+                <span
+                  class="text-[11px] font-semibold px-2 py-0.5 rounded-full"
+                  [class]="a.categorie === 'Voyage' ? 'bg-brand-orange/15 text-brand-orange' : 'bg-brand-blue/15 text-brand-blue'"
+                >
+                  {{ a.categorie === 'Voyage' ? '✈️ Voyage & Visa' : '📚 Cours de langue' }}
+                </span>
+              </div>
             </div>
-          </div>
 
-          <div class="relative inline-block text-lg leading-none tracking-tight mt-4">
-            <div class="text-gray-300">★★★★★</div>
-            <div class="absolute inset-0 overflow-hidden text-amber-400" [style.width.%]="largeurEtoiles(a.note)">★★★★★</div>
-          </div>
-          <span class="ml-2 text-sm font-semibold text-brand-navy">{{ a.note }}/5</span>
+            <div class="relative inline-block text-lg leading-none tracking-tight mt-4">
+              <div class="text-gray-300">★★★★★</div>
+              <div class="absolute inset-0 overflow-hidden text-amber-400" [style.width.%]="largeurEtoiles(a.note)">★★★★★</div>
+            </div>
+            <span class="ml-2 text-sm font-semibold text-brand-navy">{{ a.note }}/5</span>
 
-          <p class="text-gray-600 mt-3 text-sm leading-relaxed">« {{ a.commentaire }} »</p>
-        </div>
+            <p class="text-gray-600 mt-3 text-sm leading-relaxed">« {{ a.commentaire }} »</p>
+          </div>
+        }
+      </div>
+
+      <!-- Bouton suivant -->
+      <button
+        (click)="defilerAvis(1)"
+        class="hidden md:flex absolute -right-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white text-brand-navy shadow-lg hover:bg-brand-navy hover:text-white items-center justify-center transition"
+        aria-label="Avis suivant"
+      >
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Points indicateurs -->
+    <div class="flex justify-center gap-2 mt-6">
+      @for (a of avis; track a.nom; let i = $index) {
+        <button
+          (click)="allerAvis(i)"
+          class="h-2.5 rounded-full transition-all"
+          [class]="indexAvis() === i ? 'w-8 bg-brand-orange' : 'w-2.5 bg-gray-300 hover:bg-gray-400'"
+          [attr.aria-label]="'Aller à l’avis ' + (i + 1)"
+        ></button>
       }
     </div>
   </div>

@@ -76,41 +76,125 @@ export class Chatbot {
       .replace(/[\u0300-\u036f]/g, '');
 
     const contient = (...mots: string[]) => mots.some((mot) => t.includes(mot));
+    const auHasard = (choix: string[]) => choix[Math.floor(Math.random() * choix.length)];
 
-    if (contient('bonjour', 'salut', 'coucou', 'hello', 'bonsoir')) {
-      return 'Bonjour et bienvenue ! Souhaitez-vous des infos sur nos langues, nos tarifs, les examens ou l’assistance visa ?';
+    // Salutations
+    if (contient('bonjour', 'salut', 'coucou', 'hello', 'bonsoir', 'hey')) {
+      return auHasard([
+        'Bonjour et bienvenue chez MAG LINGUA INSTITUT ! 😊 Voulez-vous des infos sur nos langues, tarifs, examens ou l’assistance visa ?',
+        'Salut ! Ravi de vous accueillir 👋. Je peux vous renseigner sur les cours, les certifications, les inscriptions ou les visas. Que souhaitez-vous savoir ?',
+      ]);
     }
-    if (contient('langue', 'cours', 'francais', 'anglais', 'italien', 'chinois', 'allemand', 'espagnol')) {
-      return 'Nous proposons 6 langues : Français, Anglais, Italien, Chinois, Allemand et Espagnol 🌍. Laquelle vous intéresse ?';
+
+    // Langue précise
+    if (contient('allemand', 'deutsch', 'goethe', 'telc')) {
+      return 'Notre cours d’allemand prépare aux certifications TELC et Goethe-Zertifikat (A1 à C1) 🇩🇪. Précision et rigueur garanties ! Voulez-vous vous pré-inscrire ?';
     }
-    if (contient('prix', 'tarif', 'cout', 'frais', 'combien', 'montant')) {
-      return 'Les frais d’inscription sont de 15 000 FCFA. Le tarif des cours dépend de la langue et du niveau — écrivez-nous pour un devis personnalisé !';
+    if (contient('anglais', 'english', 'ielts', 'toefl')) {
+      return 'En anglais, nous préparons à l’IELTS et au TOEFL, avec un accent sur l’oral et la confiance 🇬🇧. Quel est votre niveau actuel ?';
     }
-    if (contient('inscri', 'quand', 'date', 'rentree', 'debut', 'commence')) {
-      return 'Les inscriptions débutent le 15 Juillet 📅. Réservez votre place dès maintenant via le formulaire de contact !';
+    if (contient('francais', 'tcf', 'fle')) {
+      return 'Notre cours de français couvre l’expression, la compréhension et la préparation au TCF 🇫🇷. Idéal pour vos études ou l’immigration.';
     }
-    if (contient('visa', 'voyage', 'etranger', 'partir', 'canada', 'ambassade')) {
-      return 'Nous vous accompagnons de A à Z : conseils, constitution du dossier, prise de rendez-vous et suivi jusqu’à l’obtention de votre visa ✈️.';
+    if (contient('italien', 'cils', 'plida')) {
+      return 'L’italien chez nous, c’est la langue de l’art et de la culture 🇮🇹, avec préparation aux certifications CILS et PLIDA.';
     }
-    if (contient('examen', 'certif', 'tcf', 'ielts', 'toefl', 'goethe', 'telc', 'cils', 'plida')) {
-      return 'Nous préparons aux certifications : TCF, TELC, Goethe-Zertifikat, IELTS, TOEFL, CILS et PLIDA 🎓.';
+    if (contient('chinois', 'mandarin', 'hsk')) {
+      return 'Le chinois vous ouvre le marché de demain 🇨🇳. Nous débutons des bases solides à l’oral comme à l’écrit.';
     }
-    if (contient('contact', 'telephone', 'numero', 'appeler', 'email', 'mail', 'whatsapp')) {
-      return 'Contactez-nous au 679 800 266 / 696 649 878 ou par email : maglinguainstitut@gmail.com 📞';
+    if (contient('espagnol', 'espanol')) {
+      return 'L’espagnol, une langue et plusieurs mondes 🇪🇸 ! Cours dynamiques pour communiquer rapidement.';
     }
-    if (contient('adresse', 'ou ', 'situe', 'localisation', 'yassa', 'trouver')) {
-      return 'Nous sommes à Yassa, dans l’immeuble voisin de l’Institut Supérieur la Perle 📍.';
+
+    // Langues en général
+    if (contient('langue', 'cours', 'apprendre', 'formation')) {
+      return 'Nous enseignons 6 langues : Français, Anglais, Italien, Chinois, Allemand et Espagnol 🌍. Laquelle vous intéresse ?';
     }
-    if (contient('horaire', 'heure', 'ouvert', 'ferme')) {
-      return 'Nos équipes sont disponibles du lundi au samedi. Passez nous voir ou appelez-nous pour convenir d’un créneau !';
+
+    // Niveaux
+    if (contient('niveau', 'debutant', 'a1', 'a2', 'b1', 'b2', 'c1', 'avance', 'intermediaire')) {
+      return 'Nous accueillons tous les niveaux, du grand débutant (A1) jusqu’au niveau avancé (C1). Un test de positionnement gratuit vous oriente vers le bon groupe 📊.';
     }
-    if (contient('merci', 'super', 'genial', 'parfait')) {
-      return 'Avec plaisir ! 😊 N’hésitez pas si vous avez d’autres questions.';
+
+    // Durée / rythme
+    if (contient('duree', 'combien de temps', 'rythme', 'semaine', 'mois', 'seance', 'frequence')) {
+      return 'Les sessions durent généralement 2 à 3 mois selon le niveau, avec plusieurs séances par semaine. Des formules intensives sont aussi possibles ⏱️.';
     }
-    if (contient('facebook', 'reseau', 'suivre', 'page')) {
-      return 'Suivez-nous sur Facebook « Mag Lingua Institut » pour ne rien manquer de nos actualités 👍.';
+
+    // Modalité présentiel / en ligne
+    if (contient('en ligne', 'distance', 'presentiel', 'zoom', 'ligne', 'online')) {
+      return 'Les cours se déroulent en présentiel à Yassa, et certaines formules sont disponibles en ligne 💻. Dites-nous votre préférence !';
     }
-    return "Je n’ai pas toutes les réponses, mais notre équipe oui ! Écrivez-nous via le formulaire de contact ou au 679 800 266. Vous pouvez aussi me demander : langues, tarifs, examens, visa ou contact.";
+
+    // Tarifs / frais
+    if (contient('prix', 'tarif', 'cout', 'frais', 'combien', 'montant', 'paiement', 'payer')) {
+      return 'Les frais d’inscription sont de 15 000 FCFA. Le tarif des cours dépend de la langue et du niveau — contactez-nous pour un devis personnalisé, paiement échelonné possible 💳.';
+    }
+
+    // Inscription / dates
+    if (contient('inscri', 'quand', 'date', 'rentree', 'debut', 'commence', 'place')) {
+      return 'Les inscriptions débutent le 15 Juillet 📅. Réservez votre place via le formulaire de contact ou passez directement à l’institut !';
+    }
+
+    // Visa / voyage
+    if (contient('visa', 'voyage', 'etranger', 'partir', 'canada', 'europe', 'ambassade', 'immigration', 'dossier')) {
+      return 'Nous vous accompagnons de A à Z ✈️ : conseils personnalisés, constitution du dossier, prise de rendez-vous et suivi jusqu’à l’obtention de votre visa.';
+    }
+
+    // Examens / certifications
+    if (contient('examen', 'certif', 'diplome', 'attestation')) {
+      return 'Nous préparons aux certifications internationales : TCF, TELC, Goethe-Zertifikat, IELTS, TOEFL, CILS et PLIDA 🎓.';
+    }
+
+    // Informatique
+    if (contient('informatique', 'ordinateur', 'bureautique', 'word', 'excel', 'programmation', 'code')) {
+      return 'Oui ! Nous proposons aussi des formations en informatique et bureautique 🖥️. Demandez-nous le programme détaillé.';
+    }
+
+    // Contact
+    if (contient('contact', 'telephone', 'numero', 'appeler', 'joindre', 'email', 'mail')) {
+      return 'Contactez-nous au 679 800 266 / 696 649 878, par email à maglinguainstitut@gmail.com, ou via WhatsApp 📞. Le formulaire de contact est juste en dessous !';
+    }
+    if (contient('whatsapp', 'wpp', 'chat')) {
+      return 'Vous pouvez nous écrire directement sur WhatsApp au 679 800 266 💬 — bouton disponible dans la section Contact !';
+    }
+
+    // Adresse
+    if (contient('adresse', 'ou ', 'situe', 'localisation', 'yassa', 'trouver', 'plan', 'venir')) {
+      return 'Nous sommes à Yassa 📍, dans l’immeuble voisin de l’Institut Supérieur la Perle (Chez Mag Lingua Institut).';
+    }
+
+    // Horaires
+    if (contient('horaire', 'heure', 'ouvert', 'ferme', 'disponible')) {
+      return 'Nos équipes vous accueillent du lundi au samedi. Appelez-nous ou passez nous voir pour convenir d’un créneau 🕘.';
+    }
+
+    // Avis
+    if (contient('avis', 'temoignage', 'reput', 'serieux', 'confiance')) {
+      return 'Nos apprenants nous notent en moyenne 4,7/5 ⭐ ! Découvrez leurs témoignages dans la section « Avis » du site.';
+    }
+
+    // Réseaux
+    if (contient('facebook', 'reseau', 'suivre', 'page', 'actualite')) {
+      return 'Suivez-nous sur Facebook « Mag Lingua Institut » pour ne rien manquer de nos actualités et promos 👍.';
+    }
+
+    // Remerciements / clôture
+    if (contient('merci', 'super', 'genial', 'parfait', 'top')) {
+      return auHasard([
+        'Avec plaisir ! 😊 N’hésitez pas si vous avez d’autres questions.',
+        'Je vous en prie ! Belle journée et à très bientôt chez MAG LINGUA INSTITUT 🌟.',
+      ]);
+    }
+    if (contient('au revoir', 'bye', 'a bientot', 'ciao')) {
+      return 'À bientôt ! 👋 Pensez à réserver votre place, les inscriptions ouvrent le 15 Juillet.';
+    }
+
+    // Repli
+    return auHasard([
+      "Bonne question ! Notre équipe pourra vous répondre en détail 😊. Vous pouvez me demander : langues, niveaux, tarifs, examens, visa, horaires ou contact.",
+      "Je n’ai pas la réponse exacte, mais l’équipe oui ! Écrivez-nous via le formulaire ou au 679 800 266. Essayez aussi : « tarifs », « visa » ou « inscriptions ».",
+    ]);
   }
 
   private scrollEnBas(): void {
