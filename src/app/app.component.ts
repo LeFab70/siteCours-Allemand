@@ -9,6 +9,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
+import { ServicesComponent } from './components/services/services.component';
 
 @Component({
   selector: 'app-root',
@@ -24,11 +25,13 @@ import { ChatbotComponent } from './components/chatbot/chatbot.component';
     ContactComponent,
     FooterComponent,
     ChatbotComponent,
+    ServicesComponent,
   ],
   template: `
     <app-navbar [scrolled]="scrolled()" />
     <main>
       <app-hero id="accueil" />
+      <app-services id="services" />
       <app-languages id="langues" />
       <app-exams id="examens" />
       <app-visa id="visa" />

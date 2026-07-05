@@ -62,21 +62,23 @@ import { RevealDirective } from '../../directives/reveal.directive';
         </div>
 
         <div class="relative flex justify-center lg:justify-end" appReveal>
-          <div class="relative w-72 h-72 sm:w-96 sm:h-96 rounded-full bg-white/5 backdrop-blur-sm
-                      border border-white/20 flex items-center justify-center animate-float">
-            <div class="w-56 h-56 sm:w-72 sm:h-72 rounded-full bg-gradient-to-br from-orange to-teal
-                        flex items-center justify-center shadow-2xl">
-              <span class="text-white font-extrabold text-3xl sm:text-4xl text-center leading-tight px-4">
-                Des langues,<br />des compétences,<br />des opportunités
-              </span>
+          <div class="relative w-full max-w-md">
+            <img
+              [src]="heroImage"
+              alt="Étudiants en cours avec leurs livres"
+              loading="eager"
+              class="rounded-3xl shadow-2xl ring-4 ring-white/20 w-full h-80 sm:h-96 object-cover animate-float"
+            />
+            <!-- badge flottant -->
+            <div class="absolute -bottom-6 -left-4 bg-white rounded-2xl shadow-xl px-5 py-4 max-w-[240px]">
+              <p class="text-navy font-extrabold leading-tight">
+                Des langues, des compétences, des opportunités
+              </p>
             </div>
-            <!-- orbit flags -->
-            <span class="absolute -top-2 left-1/2 -translate-x-1/2 text-4xl">🇫🇷</span>
-            <span class="absolute top-1/4 -right-4 text-4xl">🇬🇧</span>
-            <span class="absolute bottom-1/4 -right-4 text-4xl">🇨🇳</span>
-            <span class="absolute -bottom-2 left-1/2 -translate-x-1/2 text-4xl">🇩🇪</span>
-            <span class="absolute bottom-1/4 -left-4 text-4xl">🇮🇹</span>
-            <span class="absolute top-1/4 -left-4 text-4xl">🇪🇸</span>
+            <div class="absolute -top-4 -right-4 bg-orange text-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2">
+              <span class="text-2xl">📶</span>
+              <span class="text-xs font-bold">Wifi & salles<br />climatisées</span>
+            </div>
           </div>
         </div>
       </div>
@@ -90,4 +92,6 @@ import { RevealDirective } from '../../directives/reveal.directive';
 })
 export class HeroComponent {
   loaded = signal(true);
+  heroImage =
+    'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80';
 }

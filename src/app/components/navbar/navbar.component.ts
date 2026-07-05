@@ -116,6 +116,7 @@ export class NavbarComponent {
 
   navItems: NavItem[] = [
     { label: 'Accueil', href: '#accueil' },
+    { label: 'Services', href: '#services' },
     { label: 'Langues', href: '#langues' },
     { label: 'Examens', href: '#examens' },
     { label: 'Visa', href: '#visa' },

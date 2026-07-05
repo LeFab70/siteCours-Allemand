@@ -46,6 +46,8 @@ export class ExamsComponent {
     { code: 'TCF', label: 'TCF', description: 'Test de Connaissance du Français' },
     { code: 'telc', label: 'TELC', description: "Certification officielle d'allemand" },
     { code: 'GZ', label: 'Goethe Zertifikat', description: "Certification officielle d'allemand" },
+    { code: 'ECL', label: 'ECL', description: "Certification européenne d'allemand" },
+    { code: 'ÖSD', label: 'ÖSD', description: "Certification officielle d'allemand (autrichienne)" },
     { code: 'IELTS', label: 'IELTS', description: 'International English Language Testing System' },
     { code: 'TOEFL', label: 'TOEFL', description: 'Test of English as a Foreign Language' },
     { code: 'CILS', label: 'CILS', description: "Certification officielle d'italien" },
