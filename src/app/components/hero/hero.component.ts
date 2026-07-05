@@ -7,9 +7,18 @@ import { RevealDirective } from '../../directives/reveal.directive';
   imports: [RevealDirective],
   template: `
     <section
-      class="relative overflow-hidden bg-gradient-to-br from-navy via-navy-light to-navy-dark
-             bg-200% animate-gradient-move min-h-screen flex items-center pt-24"
+      class="relative overflow-hidden min-h-screen flex items-center pt-24"
     >
+      <!-- Image de fond large et floutée -->
+      <img
+        [src]="bannerImage"
+        alt=""
+        aria-hidden="true"
+        class="absolute inset-0 w-full h-full object-cover scale-110 blur-[6px]"
+      />
+      <!-- Voile dégradé pour la lisibilité -->
+      <div class="absolute inset-0 bg-gradient-to-br from-navy/95 via-navy-light/85 to-navy-dark/95 bg-200% animate-gradient-move"></div>
+
       <!-- decorative floating flags -->
       <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
         <span class="absolute top-24 left-[8%] text-6xl animate-float">🇫🇷</span>
@@ -92,6 +101,6 @@ import { RevealDirective } from '../../directives/reveal.directive';
 })
 export class HeroComponent {
   loaded = signal(true);
-  heroImage =
-    'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80';
+  bannerImage = 'assets/banniere.jpg';
+  heroImage = 'assets/etudiants.jpg';
 }

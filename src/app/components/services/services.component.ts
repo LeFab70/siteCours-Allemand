@@ -11,8 +11,30 @@ interface Service {
   standalone: true,
   imports: [RevealDirective],
   template: `
-    <section class="py-24 bg-white" id="services">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center">
+    <section class="pb-24 bg-white" id="services">
+      <!-- Bande statistiques (chevauche la bannière) -->
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -translate-y-10">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white rounded-3xl shadow-xl p-6 md:p-8" appReveal>
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-extrabold text-navy">6</div>
+            <div class="text-xs md:text-sm text-gray-500 font-medium mt-1">Langues enseignées</div>
+          </div>
+          <div class="text-center border-l border-gray-100">
+            <div class="text-3xl md:text-4xl font-extrabold text-orange">9</div>
+            <div class="text-xs md:text-sm text-gray-500 font-medium mt-1">Certifications</div>
+          </div>
+          <div class="text-center md:border-l border-gray-100">
+            <div class="text-3xl md:text-4xl font-extrabold text-teal">4.7/5</div>
+            <div class="text-xs md:text-sm text-gray-500 font-medium mt-1">Satisfaction</div>
+          </div>
+          <div class="text-center border-l border-gray-100">
+            <div class="text-3xl md:text-4xl font-extrabold text-navy">100%</div>
+            <div class="text-xs md:text-sm text-gray-500 font-medium mt-1">Accompagnement</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-14 items-center pt-4">
         <!-- Visuel -->
         <div class="relative" appReveal>
           <img
@@ -64,8 +86,7 @@ interface Service {
   `,
 })
 export class ServicesComponent {
-  image =
-    'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=80';
+  image = 'assets/services.jpg';
 
   nb = 'Cours du jour et du soir, en ligne et en présentiel. Wifi et salles climatisées.';
 
