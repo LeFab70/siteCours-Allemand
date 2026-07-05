@@ -14,10 +14,11 @@ import { RevealDirective } from '../../directives/reveal.directive';
         [src]="bannerImage"
         alt=""
         aria-hidden="true"
-        class="absolute inset-0 w-full h-full object-cover scale-110 blur-[6px]"
+        class="absolute inset-0 w-full h-full object-cover scale-110 blur-[4px] brightness-110"
       />
-      <!-- Voile dégradé pour la lisibilité -->
-      <div class="absolute inset-0 bg-gradient-to-br from-navy/95 via-navy-light/85 to-navy-dark/95 bg-200% animate-gradient-move"></div>
+      <!-- Voile dégradé léger + scrim gauche pour la lisibilité du texte -->
+      <div class="absolute inset-0 bg-gradient-to-br from-navy/70 via-navy-light/45 to-navy-dark/55 bg-200% animate-gradient-move"></div>
+      <div class="absolute inset-0 bg-gradient-to-r from-navy/80 via-navy/25 to-transparent"></div>
 
       <!-- decorative floating flags -->
       <div class="absolute inset-0 overflow-hidden pointer-events-none opacity-20">

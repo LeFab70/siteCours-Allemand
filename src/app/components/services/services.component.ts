@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { RevealDirective } from '../../directives/reveal.directive';
+import { CounterComponent } from '../counter/counter.component';
 
 interface Service {
   icon: string;
@@ -9,26 +10,38 @@ interface Service {
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [RevealDirective],
+  imports: [RevealDirective, CounterComponent],
   template: `
     <section class="pb-24 bg-white" id="services">
       <!-- Bande statistiques (chevauche la bannière) -->
       <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -translate-y-10">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white rounded-3xl shadow-xl p-6 md:p-8" appReveal>
-          <div class="text-center">
-            <div class="text-3xl md:text-4xl font-extrabold text-navy">6</div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 bg-white rounded-3xl shadow-xl p-6 md:p-8" appReveal>
+          <div class="text-center group">
+            <div class="text-3xl mb-1 transition-transform group-hover:scale-125">🌍</div>
+            <div class="text-3xl md:text-4xl font-extrabold text-navy tabular-nums">
+              <app-counter [end]="6" />
+            </div>
             <div class="text-xs md:text-sm text-gray-500 font-medium mt-1">Langues enseignées</div>
           </div>
-          <div class="text-center border-l border-gray-100">
-            <div class="text-3xl md:text-4xl font-extrabold text-orange">9</div>
+          <div class="text-center group border-l border-gray-100">
+            <div class="text-3xl mb-1 transition-transform group-hover:scale-125">🎓</div>
+            <div class="text-3xl md:text-4xl font-extrabold text-orange tabular-nums">
+              <app-counter [end]="9" />
+            </div>
             <div class="text-xs md:text-sm text-gray-500 font-medium mt-1">Certifications</div>
           </div>
-          <div class="text-center md:border-l border-gray-100">
-            <div class="text-3xl md:text-4xl font-extrabold text-teal">4.7/5</div>
+          <div class="text-center group md:border-l border-gray-100">
+            <div class="text-3xl mb-1 transition-transform group-hover:scale-125">⭐</div>
+            <div class="text-3xl md:text-4xl font-extrabold text-teal tabular-nums">
+              <app-counter [end]="4.7" [decimals]="1" suffix="/5" />
+            </div>
             <div class="text-xs md:text-sm text-gray-500 font-medium mt-1">Satisfaction</div>
           </div>
-          <div class="text-center border-l border-gray-100">
-            <div class="text-3xl md:text-4xl font-extrabold text-navy">100%</div>
+          <div class="text-center group border-l border-gray-100">
+            <div class="text-3xl mb-1 transition-transform group-hover:scale-125">🤝</div>
+            <div class="text-3xl md:text-4xl font-extrabold text-navy tabular-nums">
+              <app-counter [end]="100" suffix="%" />
+            </div>
             <div class="text-xs md:text-sm text-gray-500 font-medium mt-1">Accompagnement</div>
           </div>
         </div>
