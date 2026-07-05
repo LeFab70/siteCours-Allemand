@@ -208,6 +208,34 @@ type SubmitState = 'idle' | 'submitting' | 'success' | 'error';
             </form>
           </div>
         </div>
+
+        <!-- Carte / géolocalisation -->
+        <div class="mt-10" appReveal>
+          <div class="flex items-center gap-2 mb-4">
+            <span class="text-xl">📍</span>
+            <h3 class="font-extrabold text-navy text-lg">Nous trouver</h3>
+          </div>
+          <div class="rounded-2xl overflow-hidden shadow-xl ring-1 ring-black/5">
+            <iframe
+              src="https://www.google.com/maps?q=Institut+Sup%C3%A9rieur+la+Perle+Yassa+Douala&output=embed"
+              title="Localisation de MAG LINGUA INSTITUT à Yassa"
+              width="100%"
+              height="340"
+              style="border:0"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Institut+Sup%C3%A9rieur+la+Perle+Yassa+Douala"
+            target="_blank"
+            rel="noopener"
+            class="inline-flex items-center gap-2 mt-4 text-navy font-semibold hover:text-orange transition-colors"
+          >
+            Ouvrir dans Google Maps →
+          </a>
+        </div>
       </div>
     </section>
   `,
