@@ -102,11 +102,12 @@
     [src]="images.banniere"
     alt=""
     aria-hidden="true"
-    class="absolute inset-0 w-full h-full object-cover scale-110 blur-[6px]"
+    class="absolute inset-0 w-full h-full object-cover scale-110 blur-[4px] brightness-110"
   />
-  <!-- Voile dégradé pour la lisibilité -->
-  <div class="absolute inset-0 bg-gradient-to-br from-brand-navy/95 via-brand-blue/85 to-brand-navy/90"></div>
-  <div class="absolute inset-0 animated-gradient opacity-40 mix-blend-overlay"></div>
+  <!-- Voile dégradé léger + scrim gauche pour la lisibilité du texte -->
+  <div class="absolute inset-0 bg-gradient-to-br from-brand-navy/70 via-brand-blue/45 to-brand-navy/55"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-brand-navy/80 via-brand-navy/25 to-transparent"></div>
+  <div class="absolute inset-0 animated-gradient opacity-20 mix-blend-overlay"></div>
 
   <!-- Bulles décoratives -->
   <div class="absolute inset-0 overflow-hidden pointer-events-none">
@@ -223,21 +224,33 @@
 <!-- ============ BANDE STATISTIQUES ============ -->
 <section class="bg-white -mt-1">
   <div class="max-w-6xl mx-auto px-4 sm:px-6 -translate-y-10">
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 bg-white rounded-3xl shadow-xl p-6 md:p-8" appReveal>
-      <div class="text-center">
-        <div class="text-3xl md:text-4xl font-black text-brand-navy">6</div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 bg-white rounded-3xl shadow-xl p-6 md:p-8" appReveal>
+      <div class="text-center group">
+        <div class="text-3xl mb-1 transition-transform group-hover:scale-125">🌍</div>
+        <div class="text-3xl md:text-4xl font-black text-brand-navy tabular-nums">
+          <app-counter [end]="6" />
+        </div>
         <div class="text-xs md:text-sm text-gray-500 font-medium mt-1">Langues enseignées</div>
       </div>
-      <div class="text-center border-l border-gray-100">
-        <div class="text-3xl md:text-4xl font-black text-brand-orange">9</div>
+      <div class="text-center group border-l border-gray-100">
+        <div class="text-3xl mb-1 transition-transform group-hover:scale-125">🎓</div>
+        <div class="text-3xl md:text-4xl font-black text-brand-orange tabular-nums">
+          <app-counter [end]="9" />
+        </div>
         <div class="text-xs md:text-sm text-gray-500 font-medium mt-1">Certifications</div>
       </div>
-      <div class="text-center md:border-l border-gray-100">
-        <div class="text-3xl md:text-4xl font-black text-brand-green">4.7/5</div>
+      <div class="text-center group md:border-l border-gray-100">
+        <div class="text-3xl mb-1 transition-transform group-hover:scale-125">⭐</div>
+        <div class="text-3xl md:text-4xl font-black text-brand-green tabular-nums">
+          <app-counter [end]="4.7" [decimals]="1" suffix="/5" />
+        </div>
         <div class="text-xs md:text-sm text-gray-500 font-medium mt-1">Satisfaction</div>
       </div>
-      <div class="text-center border-l border-gray-100">
-        <div class="text-3xl md:text-4xl font-black text-brand-blue">100%</div>
+      <div class="text-center group border-l border-gray-100">
+        <div class="text-3xl mb-1 transition-transform group-hover:scale-125">🤝</div>
+        <div class="text-3xl md:text-4xl font-black text-brand-blue tabular-nums">
+          <app-counter [end]="100" suffix="%" />
+        </div>
         <div class="text-xs md:text-sm text-gray-500 font-medium mt-1">Accompagnement</div>
       </div>
     </div>

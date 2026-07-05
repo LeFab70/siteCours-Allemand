@@ -12,6 +12,7 @@ import {
 import { FormsModule } from '@angular/forms';
 import { RevealDirective } from './reveal.directive';
 import { Chatbot } from './chatbot/chatbot';
+import { Counter } from './counter/counter';
 import {
   LANGUES,
   EXAMENS,
@@ -36,7 +37,7 @@ interface Compteur {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [FormsModule, RevealDirective, Chatbot],
+  imports: [FormsModule, RevealDirective, Chatbot, Counter],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
