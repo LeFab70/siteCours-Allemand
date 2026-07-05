@@ -164,15 +164,10 @@ export const TARIFS: Tarif[] = [
   { niveau: 'C1', scolarite: '110 000', manuel: '20 000', duree: '12 semaines' },
 ];
 
-// Images d'illustration (Unsplash) sur le thème de l'apprentissage
+// Images d'illustration (locales) — étudiants africains, thème apprentissage
 export const IMAGES = {
-  hero: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80',
-  services:
-    'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=80',
-  etudes:
-    'https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=900&q=80',
-  langues:
-    'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=900&q=80',
-  etudiante:
-    'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=900&q=80',
+  banniere: 'banniere.jpg',
+  hero: 'etudiants.jpg',
+  services: 'services.jpg',
+  etudes: 'etudiante.jpg',
 };
