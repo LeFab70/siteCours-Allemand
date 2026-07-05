@@ -35,6 +35,19 @@ export interface Avis {
   couleur: string; // classe de fond pour l'avatar
 }
 
+export interface Service {
+  titre: string;
+  icone: string; // emoji
+}
+
+export interface Tarif {
+  niveau: string;
+  scolarite: string;
+  manuel: string;
+  duree: string;
+  populaire?: boolean;
+}
+
 export const LANGUES: Langue[] = [
   { nom: 'Français', drapeau: '🇫🇷', slogan: 'Parlez, comprenez, réussissez.', couleur: 'from-blue-600 to-blue-800' },
   { nom: 'Anglais', drapeau: '🇬🇧', slogan: 'Communiquez avec le monde.', couleur: 'from-indigo-600 to-blue-900' },
@@ -48,6 +61,8 @@ export const EXAMENS: Examen[] = [
   { sigle: 'TCF', description: 'Test de Connaissance du Français', langue: 'Français', accent: 'text-brand-blue' },
   { sigle: 'TELC', description: "Certification officielle d'allemand", langue: 'Allemand', accent: 'text-brand-navy' },
   { sigle: 'Goethe-Zertifikat', description: "Certification officielle d'allemand", langue: 'Allemand', accent: 'text-brand-green' },
+  { sigle: 'ECL', description: "Certification européenne d'allemand", langue: 'Allemand', accent: 'text-brand-blue' },
+  { sigle: 'ÖSD', description: "Certification officielle d'allemand (autrichienne)", langue: 'Allemand', accent: 'text-brand-orange' },
   { sigle: 'IELTS', description: 'International English Language Testing System', langue: 'Anglais', accent: 'text-red-600' },
   { sigle: 'TOEFL', description: 'Test of English as a Foreign Language', langue: 'Anglais', accent: 'text-brand-blue' },
   { sigle: 'CILS', description: "Certification officielle d'italien", langue: 'Italien', accent: 'text-brand-green' },
@@ -129,3 +144,35 @@ export const AVIS: Avis[] = [
     couleur: 'from-amber-500 to-orange-700',
   },
 ];
+
+export const SERVICES: Service[] = [
+  { titre: 'Cours de langues aux normes internationales et préparation aux examens', icone: '🌍' },
+  { titre: "Études supérieures à l'étranger", icone: '🎓' },
+  { titre: 'Formations et emplois', icone: '💼' },
+  { titre: 'Au pair, volontariat, regroupement familial, soins infirmiers', icone: '🤝' },
+  { titre: 'Traduction et interprétariat', icone: '🗣️' },
+];
+
+export const SERVICES_NB =
+  'Cours du jour et du soir, en ligne et en présentiel. Wifi et salles climatisées.';
+
+export const TARIFS: Tarif[] = [
+  { niveau: 'A1', scolarite: '100 000', manuel: '15 000', duree: '10 semaines' },
+  { niveau: 'A2', scolarite: '100 000', manuel: '15 000', duree: '10 semaines' },
+  { niveau: 'B1', scolarite: '115 000', manuel: '20 000', duree: '12 semaines', populaire: true },
+  { niveau: 'B2', scolarite: '115 000', manuel: '20 000', duree: '12 semaines' },
+  { niveau: 'C1', scolarite: '110 000', manuel: '20 000', duree: '12 semaines' },
+];
+
+// Images d'illustration (Unsplash) sur le thème de l'apprentissage
+export const IMAGES = {
+  hero: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=80',
+  services:
+    'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=900&q=80',
+  etudes:
+    'https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=900&q=80',
+  langues:
+    'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=900&q=80',
+  etudiante:
+    'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=900&q=80',
+};

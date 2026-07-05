@@ -20,6 +20,10 @@ import {
   FRAIS_INSCRIPTION,
   DEBUT_INSCRIPTION,
   AVIS,
+  SERVICES,
+  SERVICES_NB,
+  TARIFS,
+  IMAGES,
 } from './data/institut.data';
 
 interface Compteur {
@@ -47,6 +51,10 @@ export class App implements OnInit, OnDestroy {
   readonly frais = FRAIS_INSCRIPTION;
   readonly debut = DEBUT_INSCRIPTION;
   readonly avis = AVIS;
+  readonly services = SERVICES;
+  readonly servicesNb = SERVICES_NB;
+  readonly tarifs = TARIFS;
+  readonly images = IMAGES;
 
   // Note moyenne des avis clients
   readonly noteMoyenne = computed(() => {
@@ -106,8 +114,10 @@ export class App implements OnInit, OnDestroy {
 
   readonly navLinks = [
     { label: 'Accueil', anchor: 'accueil' },
+    { label: 'Services', anchor: 'services' },
     { label: 'Langues', anchor: 'langues' },
     { label: 'Examens', anchor: 'examens' },
+    { label: 'Tarifs', anchor: 'tarifs' },
     { label: 'Visa', anchor: 'visa' },
     { label: 'Avis', anchor: 'avis' },
     { label: 'Contact', anchor: 'contact' },
