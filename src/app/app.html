@@ -1088,5 +1088,20 @@
   }
 </aside>
 
+<!-- ============ BOUTON RETOUR EN HAUT ============ -->
+@if (afficherHaut()) {
+  <button
+    (click)="remonterEnHaut()"
+    class="fixed bottom-24 right-6 z-[55] w-12 h-12 rounded-full bg-brand-orange text-white shadow-xl
+           flex items-center justify-center hover:bg-brand-orange-light hover:scale-110
+           transition-all duration-300 animate-[fade-up_0.3s_ease]"
+    aria-label="Retour en haut"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
+    </svg>
+  </button>
+}
+
 <!-- ============ CHATBOT IA ============ -->
 <app-chatbot />

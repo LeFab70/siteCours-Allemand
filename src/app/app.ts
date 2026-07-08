@@ -129,6 +129,7 @@ export class App implements OnInit, OnDestroy {
   // ===== État de l'interface (signaux) =====
   readonly menuOuvert = signal(false);
   readonly pageDefilee = signal(false);
+  readonly afficherHaut = signal(false);
   readonly langueSurvolee = signal<string | null>(null);
 
   // Filtre interactif des examens par langue
@@ -179,7 +180,12 @@ export class App implements OnInit, OnDestroy {
   private onScroll = () => {
     const y = this.doc.defaultView?.scrollY ?? 0;
     this.pageDefilee.set(y > 40);
+    this.afficherHaut.set(y > 500);
   };
+
+  remonterEnHaut(): void {
+    this.doc.defaultView?.scrollTo({ top: 0, behavior: 'smooth' });
+  }
 
   private calculerCible(): Date {
     const now = new Date();
