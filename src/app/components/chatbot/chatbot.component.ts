@@ -232,8 +232,8 @@ export class ChatbotComponent {
       return 'Nous vous accueillons du lundi au samedi. Appelez-nous pour convenir d’un créneau 🕘.';
     if (has('avis', 'temoignage', 'reput', 'serieux', 'confiance'))
       return 'Nos apprenants nous notent en moyenne 4,7/5 ⭐ ! Voir la section « Avis » du site.';
-    if (has('facebook', 'reseau', 'suivre', 'page', 'actualite'))
-      return 'Suivez-nous sur Facebook « Mag Lingua Institut » pour nos actualités et promos 👍.';
+    if (has('facebook', 'tiktok', 'youtube', 'instagram', 'linkedin', 'reseau', 'suivre', 'page', 'actualite'))
+      return 'Suivez-nous partout 📱 : Facebook, TikTok, YouTube, Instagram et LinkedIn (@maglinguainstitut). Tips, lives et offres exclusives vous y attendent !';
     if (has('merci', 'super', 'genial', 'parfait', 'top'))
       return pick([
         'Avec plaisir ! 😊 N’hésitez pas si vous avez d’autres questions.',

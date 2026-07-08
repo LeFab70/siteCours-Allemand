@@ -10,6 +10,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
 import { ChatbotComponent } from './components/chatbot/chatbot.component';
 import { ServicesComponent } from './components/services/services.component';
+import { SocialsComponent } from './components/socials/socials.component';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ import { ServicesComponent } from './components/services/services.component';
     VisaComponent,
     PricingComponent,
     TestimonialsComponent,
+    SocialsComponent,
     ContactComponent,
     FooterComponent,
     ChatbotComponent,
@@ -37,6 +39,7 @@ import { ServicesComponent } from './components/services/services.component';
       <app-visa id="visa" />
       <app-pricing id="tarifs" />
       <app-testimonials id="avis" />
+      <app-socials />
       <app-contact id="contact" />
     </main>
     <app-footer />
@@ -46,7 +49,7 @@ import { ServicesComponent } from './components/services/services.component';
     @if (showBackToTop()) {
       <button
         (click)="scrollToTop()"
-        class="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full bg-orange text-white shadow-lg
+        class="fixed bottom-24 right-6 z-50 w-12 h-12 rounded-full bg-orange text-white shadow-lg
                flex items-center justify-center hover:bg-orange-light hover:scale-110
                transition-all duration-300 animate-fade-in"
         aria-label="Retour en haut"
