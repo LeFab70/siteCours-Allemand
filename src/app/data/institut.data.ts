@@ -26,6 +26,14 @@ export interface InfoContact {
   adresse: string;
 }
 
+export interface ReseauSocial {
+  nom: string;
+  url: string;
+  handle: string;
+  couleur: string;
+  description: string;
+}
+
 export interface Avis {
   nom: string;
   initiales: string;
@@ -84,6 +92,52 @@ export const INFO_CONTACT: InfoContact = {
   facebookUrl: 'https://www.facebook.com/maglinguainstitut',
   adresse: "Yassa, Immeuble voisin à l'Institut Supérieur la Perle, Chez Mag Lingua Institut",
 };
+
+/** Liens sociaux (placeholders à remplacer par les vrais comptes) — utiles pour monétisation & trafic */
+export const RESEAUX_SOCIAUX: ReseauSocial[] = [
+  {
+    nom: 'Facebook',
+    url: 'https://www.facebook.com/maglinguainstitut',
+    handle: '@Mag Lingua Institut',
+    couleur: '#1877F2',
+    description: 'Actualités & communauté',
+  },
+  {
+    nom: 'TikTok',
+    url: 'https://www.tiktok.com/@maglinguainstitut',
+    handle: '@maglinguainstitut',
+    couleur: '#010101',
+    description: 'Cours courts & tips',
+  },
+  {
+    nom: 'YouTube',
+    url: 'https://www.youtube.com/@maglinguainstitut',
+    handle: '@maglinguainstitut',
+    couleur: '#FF0000',
+    description: 'Vidéos & tutoriels',
+  },
+  {
+    nom: 'Instagram',
+    url: 'https://www.instagram.com/maglinguainstitut',
+    handle: '@maglinguainstitut',
+    couleur: '#E4405F',
+    description: 'Stories & coulisses',
+  },
+  {
+    nom: 'LinkedIn',
+    url: 'https://www.linkedin.com/company/maglinguainstitut',
+    handle: 'Mag Lingua Institut',
+    couleur: '#0A66C2',
+    description: 'Formations & carrières',
+  },
+  {
+    nom: 'WhatsApp',
+    url: 'https://wa.me/237679800266?text=Bonjour%20MAG%20LINGUA%20INSTITUT',
+    handle: '679 800 266',
+    couleur: '#25D366',
+    description: 'Contact rapide',
+  },
+];
 
 export const FRAIS_INSCRIPTION = '15 000 FCFA';
 export const DEBUT_INSCRIPTION = '15 Juillet';

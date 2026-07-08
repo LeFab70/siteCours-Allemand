@@ -175,8 +175,8 @@ export class Chatbot {
     }
 
     // Réseaux
-    if (contient('facebook', 'reseau', 'suivre', 'page', 'actualite')) {
-      return 'Suivez-nous sur Facebook « Mag Lingua Institut » pour ne rien manquer de nos actualités et promos 👍.';
+    if (contient('facebook', 'tiktok', 'youtube', 'instagram', 'linkedin', 'reseau', 'suivre', 'page', 'actualite')) {
+      return 'Suivez-nous partout 📱 : Facebook, TikTok, YouTube, Instagram et LinkedIn (@maglinguainstitut). Tips, lives et offres exclusives vous y attendent !';
     }
 
     // Remerciements / clôture

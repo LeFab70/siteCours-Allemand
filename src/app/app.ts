@@ -25,6 +25,7 @@ import {
   SERVICES_NB,
   TARIFS,
   IMAGES,
+  RESEAUX_SOCIAUX,
 } from './data/institut.data';
 
 interface Compteur {
@@ -56,6 +57,7 @@ export class App implements OnInit, OnDestroy {
   readonly servicesNb = SERVICES_NB;
   readonly tarifs = TARIFS;
   readonly images = IMAGES;
+  readonly reseaux = RESEAUX_SOCIAUX;
 
   // Note moyenne des avis clients
   readonly noteMoyenne = computed(() => {
