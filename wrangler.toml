@@ -1,0 +1,8 @@
+name = "maglinguainstitut"
+compatibility_date = "2026-07-11"
+workers_dev = true
+
+# Sert le build Angular (site statique SPA)
+[assets]
+directory = "./dist/mag-lingua/browser"
+not_found_handling = "single-page-application"
