@@ -161,8 +161,8 @@ export class SocialsComponent {
     },
     {
       name: 'WhatsApp',
-      url: 'https://wa.me/237679800266?text=Bonjour%20MAG%20LINGUA%20INSTITUT',
-      handle: '679 800 266',
+      url: 'https://wa.me/237696649878?text=Bonjour%20MAG%20LINGUA%20INSTITUT',
+      handle: '696 649 878',
       color: '#25D366',
       description: 'Contact rapide',
     },

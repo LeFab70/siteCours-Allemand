@@ -26,11 +26,11 @@ type SubmitState = 'idle' | 'submitting' | 'success' | 'error';
                 <span class="text-2xl">📞</span>
                 <div>
                   <p class="font-semibold">Téléphone</p>
-                  <a href="tel:+237679800266" class="text-white/80 hover:text-orange transition-colors block">
-                    679 800 266
-                  </a>
                   <a href="tel:+237696649878" class="text-white/80 hover:text-orange transition-colors block">
                     696 649 878
+                  </a>
+                  <a href="tel:+237679800266" class="text-white/80 hover:text-orange transition-colors block">
+                    679 800 266
                   </a>
                 </div>
               </div>
@@ -252,7 +252,7 @@ export class ContactComponent {
   submitState = signal<SubmitState>('idle');
 
   get whatsappUrl(): string {
-    const numero = '237679800266';
+    const numero = '237696649878'; // Orange (WhatsApp)
     const texte = encodeURIComponent(
       'Bonjour MAG LINGUA INSTITUT, je souhaite avoir des informations sur vos formations.',
     );

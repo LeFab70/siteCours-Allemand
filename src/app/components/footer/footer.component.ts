@@ -81,7 +81,7 @@ interface SocialIcon {
         <div>
           <p class="text-white font-semibold mb-3">Contact</p>
           <ul class="space-y-2 text-sm">
-            <li>📞 679 800 266 / 696 649 878</li>
+            <li>📞 696 649 878 / 679 800 266</li>
             <li>✉️ maglinguainstitut&#64;gmail.com</li>
             <li>🌐 www.maglinguainstitut.com</li>
           </ul>
@@ -106,6 +106,6 @@ export class FooterComponent {
     { name: 'YouTube', url: 'https://www.youtube.com/@maglinguainstitut', color: '#FF0000' },
     { name: 'Instagram', url: 'https://www.instagram.com/maglinguainstitut', color: '#E4405F' },
     { name: 'LinkedIn', url: 'https://www.linkedin.com/company/maglinguainstitut', color: '#0A66C2' },
-    { name: 'WhatsApp', url: 'https://wa.me/237679800266?text=Bonjour%20MAG%20LINGUA%20INSTITUT', color: '#25D366' },
+    { name: 'WhatsApp', url: 'https://wa.me/237696649878?text=Bonjour%20MAG%20LINGUA%20INSTITUT', color: '#25D366' },
   ];
 }

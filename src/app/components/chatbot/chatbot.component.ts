@@ -223,9 +223,9 @@ export class ChatbotComponent {
     if (has('informatique', 'ordinateur', 'bureautique', 'word', 'excel', 'programmation', 'code'))
       return 'Oui ! Nous proposons aussi des formations en informatique et bureautique 🖥️. Demandez le programme.';
     if (has('contact', 'telephone', 'numero', 'appeler', 'joindre', 'email', 'mail'))
-      return 'Contactez-nous au 679 800 266 / 696 649 878, par email maglinguainstitut@gmail.com, ou via WhatsApp 📞.';
+      return 'Contactez-nous au 696 649 878 (Orange / WhatsApp) ou 679 800 266 (MTN), par email maglinguainstitut@gmail.com 📞.';
     if (has('whatsapp', 'wpp', 'chat'))
-      return 'Écrivez-nous sur WhatsApp au 679 800 266 💬 — bouton disponible dans la section Contact !';
+      return 'Écrivez-nous sur WhatsApp au 696 649 878 (Orange) 💬 — bouton disponible dans la section Contact !';
     if (has('adresse', 'ou ', 'situe', 'localisation', 'yassa', 'trouver', 'plan', 'venir'))
       return 'Nous sommes à Yassa 📍, immeuble voisin de l’Institut Supérieur la Perle (Chez Mag Lingua Institut).';
     if (has('horaire', 'heure', 'ouvert', 'ferme', 'disponible'))
@@ -244,7 +244,7 @@ export class ChatbotComponent {
 
     return pick([
       'Bonne question ! Notre équipe pourra vous répondre en détail 😊. Demandez-moi : langues, niveaux, tarifs, examens, visa, horaires ou contact.',
-      'Je n’ai pas la réponse exacte, mais l’équipe oui ! Écrivez-nous via le formulaire ou au 679 800 266. Essayez : « tarifs », « visa » ou « inscriptions ».',
+      'Je n’ai pas la réponse exacte, mais l’équipe oui ! Écrivez-nous via le formulaire ou WhatsApp au 696 649 878. Essayez : « tarifs », « visa » ou « inscriptions ».',
     ]);
   }
 
