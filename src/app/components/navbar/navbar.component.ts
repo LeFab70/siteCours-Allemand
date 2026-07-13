@@ -20,10 +20,13 @@ interface NavItem {
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
         <!-- Logo -->
         <a href="#accueil" class="flex items-center gap-3 group">
-          <div class="w-11 h-11 rounded-full bg-navy flex items-center justify-center
-                      shadow-md group-hover:animate-pulse-soft">
-            <span class="text-orange font-extrabold text-lg">ML</span>
-          </div>
+          <img
+            src="assets/logo.png"
+            alt="Logo MAG LINGUA INSTITUT"
+            width="44"
+            height="44"
+            class="w-11 h-11 rounded-full object-cover shadow-md ring-2 ring-white/40 bg-white group-hover:animate-pulse-soft"
+          />
           <div class="leading-tight">
             <p class="font-extrabold text-navy text-lg tracking-tight" [class.text-white]="!scrolled">
               MAG LINGUA

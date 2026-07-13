@@ -13,8 +13,19 @@ interface SocialIcon {
     <footer class="bg-navy-dark text-white/70 pt-14 pb-6">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid sm:grid-cols-3 gap-10">
         <div>
-          <p class="text-white font-extrabold text-lg">MAG LINGUA INSTITUT</p>
-          <p class="text-orange text-sm font-semibold mb-3">Formation Professionnelle · Langues & Informatique</p>
+          <div class="flex items-center gap-3 mb-3">
+            <img
+              src="assets/logo.png"
+              alt="Logo MAG LINGUA INSTITUT"
+              width="44"
+              height="44"
+              class="w-11 h-11 rounded-full object-cover shadow-md bg-white"
+            />
+            <div>
+              <p class="text-white font-extrabold text-lg leading-tight">MAG LINGUA INSTITUT</p>
+              <p class="text-orange text-sm font-semibold">Formation Professionnelle · Langues & Informatique</p>
+            </div>
+          </div>
           <p class="text-sm leading-relaxed">
             Yassa, Immeuble voisin à l'Institut Supérieur la Perle, Chez Mag Lingua Institut.
           </p>
