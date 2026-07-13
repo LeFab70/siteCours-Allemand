@@ -866,14 +866,15 @@
               </div>
 
               <div>
-                <label class="block text-sm font-semibold text-brand-navy mb-1.5">Je suis intéressé(e) par</label>
+                <label class="block text-sm font-semibold text-brand-navy mb-1.5">Je suis intéressé(e) par *</label>
                 <select
                   name="interet"
                   [ngModel]="interet()"
                   (ngModelChange)="interet.set($event)"
                   class="w-full rounded-xl border border-gray-200 px-4 py-3 focus:border-brand-orange focus:ring-2 focus:ring-brand-orange/20 outline-none transition bg-white"
+                  required
                 >
-                  <option value="">— Choisir —</option>
+                  <option value="">— Choisir un cours / service —</option>
                   @for (l of langues; track l.nom) {
                     <option [value]="l.nom">Cours de {{ l.nom }}</option>
                   }
@@ -881,6 +882,9 @@
                   <option value="Assistance visa">Assistance visa</option>
                   <option value="Informatique">Formation informatique</option>
                 </select>
+                @if (!interet() && (nom() || email() || message())) {
+                  <p class="text-xs text-red-500 mt-1">Choisissez le cours ou le service souhaité.</p>
+                }
               </div>
 
               <div>

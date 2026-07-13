@@ -1,11 +1,14 @@
 /**
- * Clés EmailJS (dashboard : https://dashboard.emailjs.com/)
+ * Clés EmailJS — dashboard : https://dashboard.emailjs.com/
  *
- * Template recommandé — variables :
- *   {{nom}} {{email}} {{telephone}} {{interet}} {{message}}
- * et "Reply To" = {{email}}
- *
- * Remplace les 3 valeurs ci-dessous par celles de ton compte.
+ * Dans le template (Subject + Body), utilise par ex. :
+ *   Subject : {{subject}}
+ *   Body :
+ *     Nouveau message de {{nom}} ({{email}})
+ *     Téléphone : {{telephone}}
+ *     Cours / service : {{interet}}
+ *     {{message}}
+ *   Reply To : {{email}}
  */
 export const environment = {
   emailjs: {

@@ -164,8 +164,10 @@ export class App implements OnInit, OnDestroy {
   readonly nomValide = computed(() => this.nom().trim().length >= 2);
   readonly emailValide = computed(() => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email().trim()));
   readonly messageValide = computed(() => this.message().trim().length >= 10);
+  readonly interetValide = computed(() => this.interet().trim().length > 0);
   readonly formulaireValide = computed(
-    () => this.nomValide() && this.emailValide() && this.messageValide(),
+    () =>
+      this.nomValide() && this.emailValide() && this.messageValide() && this.interetValide(),
   );
 
   ngOnInit(): void {
@@ -258,16 +260,36 @@ export class App implements OnInit, OnDestroy {
     this.erreurEnvoi.set('');
 
     try {
+      const nom = this.nom().trim();
+      const email = this.email().trim();
+      const telephone = this.telephone().trim() || 'Non renseigné';
+      const interet = this.interet().trim();
+      const message = this.message().trim();
+      const sujet = `Inscription / demande — ${interet}`;
+      const messageComplet =
+        `Cours / service demandé : ${interet}\n` +
+        `Téléphone : ${telephone}\n\n` +
+        `Message :\n${message}`;
+
       await emailjs.send(
         serviceId,
         templateId,
         {
-          nom: this.nom().trim(),
-          email: this.email().trim(),
-          telephone: this.telephone().trim() || 'Non renseigné',
-          interet: this.interet().trim() || 'Non précisé',
-          message: this.message().trim(),
-          reply_to: this.email().trim(),
+          // Champs principaux (à mettre dans le template EmailJS)
+          nom,
+          email,
+          telephone,
+          interet,
+          cours: interet,
+          service: interet,
+          topic: interet,
+          subject: sujet,
+          title: sujet,
+          message: messageComplet,
+          // Alias fréquents des templates EmailJS par défaut
+          from_name: nom,
+          from_email: email,
+          reply_to: email,
         },
         { publicKey },
       );
