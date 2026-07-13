@@ -266,16 +266,13 @@ export class App implements OnInit, OnDestroy {
       const interet = this.interet().trim();
       const message = this.message().trim();
       const sujet = `Inscription / demande — ${interet}`;
-      const messageComplet =
-        `Cours / service demandé : ${interet}\n` +
-        `Téléphone : ${telephone}\n\n` +
-        `Message :\n${message}`;
 
       await emailjs.send(
         serviceId,
         templateId,
         {
-          // Champs principaux (à mettre dans le template EmailJS)
+          // Aligné sur ton template EmailJS
+          name: nom,
           nom,
           email,
           telephone,
@@ -285,8 +282,12 @@ export class App implements OnInit, OnDestroy {
           topic: interet,
           subject: sujet,
           title: sujet,
-          message: messageComplet,
-          // Alias fréquents des templates EmailJS par défaut
+          time: new Date().toLocaleString('fr-FR', {
+            dateStyle: 'full',
+            timeStyle: 'short',
+          }),
+          // Message seul : le template affiche déjà {{interet}} et {{telephone}}
+          message,
           from_name: nom,
           from_email: email,
           reply_to: email,
