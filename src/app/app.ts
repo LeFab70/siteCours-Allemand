@@ -251,9 +251,9 @@ export class App implements OnInit, OnDestroy {
     this.message.set('');
   }
 
-  // Lien WhatsApp pré-rempli à partir du 1er numéro
+  // Lien WhatsApp (Orange : 696 649 878)
   get lienWhatsapp(): string {
-    const numero = '237' + this.info.telephones[0].replace(/\s/g, '');
+    const numero = '237696649878';
     const texte = encodeURIComponent(
       'Bonjour MAG LINGUA INSTITUT, je souhaite avoir des informations sur vos formations.',
     );

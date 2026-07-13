@@ -153,10 +153,10 @@ export class Chatbot {
 
     // Contact
     if (contient('contact', 'telephone', 'numero', 'appeler', 'joindre', 'email', 'mail')) {
-      return 'Contactez-nous au 679 800 266 / 696 649 878, par email à maglinguainstitut@gmail.com, ou via WhatsApp 📞. Le formulaire de contact est juste en dessous !';
+      return 'Contactez-nous au 696 649 878 (Orange / WhatsApp) ou 679 800 266 (MTN), par email à maglinguainstitut@gmail.com 📞. Le formulaire de contact est juste en dessous !';
     }
     if (contient('whatsapp', 'wpp', 'chat')) {
-      return 'Vous pouvez nous écrire directement sur WhatsApp au 679 800 266 💬 — bouton disponible dans la section Contact !';
+      return 'Vous pouvez nous écrire directement sur WhatsApp au 696 649 878 (Orange) 💬 — bouton disponible dans la section Contact !';
     }
 
     // Adresse
@@ -193,7 +193,7 @@ export class Chatbot {
     // Repli
     return auHasard([
       "Bonne question ! Notre équipe pourra vous répondre en détail 😊. Vous pouvez me demander : langues, niveaux, tarifs, examens, visa, horaires ou contact.",
-      "Je n’ai pas la réponse exacte, mais l’équipe oui ! Écrivez-nous via le formulaire ou au 679 800 266. Essayez aussi : « tarifs », « visa » ou « inscriptions ».",
+      "Je n’ai pas la réponse exacte, mais l’équipe oui ! Écrivez-nous via le formulaire ou WhatsApp au 696 649 878. Essayez aussi : « tarifs », « visa » ou « inscriptions ».",
     ]);
   }
 

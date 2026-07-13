@@ -85,7 +85,7 @@ export const SERVICES_VISA: ServiceVisa[] = [
 ];
 
 export const INFO_CONTACT: InfoContact = {
-  telephones: ['679 800 266', '696 649 878'],
+  telephones: ['696 649 878', '679 800 266'], // Orange (WhatsApp) en premier, puis MTN
   email: 'maglinguainstitut@gmail.com',
   siteWeb: 'www.maglinguainstitut.com',
   facebook: 'Mag Lingua Institut',
@@ -132,8 +132,8 @@ export const RESEAUX_SOCIAUX: ReseauSocial[] = [
   },
   {
     nom: 'WhatsApp',
-    url: 'https://wa.me/237679800266?text=Bonjour%20MAG%20LINGUA%20INSTITUT',
-    handle: '679 800 266',
+    url: 'https://wa.me/237696649878?text=Bonjour%20MAG%20LINGUA%20INSTITUT',
+    handle: '696 649 878',
     couleur: '#25D366',
     description: 'Contact rapide',
   },
