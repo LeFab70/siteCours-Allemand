@@ -27,6 +27,8 @@ import {
   IMAGES,
   RESEAUX_SOCIAUX,
 } from './data/institut.data';
+import emailjs from '@emailjs/browser';
+import { environment } from '../environments/environment';
 
 interface Compteur {
   jours: number;
@@ -156,6 +158,8 @@ export class App implements OnInit, OnDestroy {
   readonly message = signal('');
   readonly envoiEnCours = signal(false);
   readonly envoye = signal(false);
+  readonly erreurEnvoi = signal('');
+
 
   readonly nomValide = computed(() => this.nom().trim().length >= 2);
   readonly emailValide = computed(() => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.email().trim()));
@@ -231,19 +235,56 @@ export class App implements OnInit, OnDestroy {
     this.scrollTo('contact');
   }
 
-  // ===== Soumission du formulaire =====
-  soumettre(): void {
+  // ===== Soumission du formulaire (EmailJS) =====
+  async soumettre(): Promise<void> {
     if (!this.formulaireValide() || this.envoiEnCours()) return;
+
+    const { serviceId, templateId, publicKey } = environment.emailjs;
+    if (
+      !serviceId ||
+      !templateId ||
+      !publicKey ||
+      serviceId.startsWith('YOUR_') ||
+      templateId.startsWith('YOUR_') ||
+      publicKey.startsWith('YOUR_')
+    ) {
+      this.erreurEnvoi.set(
+        'EmailJS n’est pas encore configuré. Contactez-nous via WhatsApp en attendant.',
+      );
+      return;
+    }
+
     this.envoiEnCours.set(true);
-    // Simulation d'envoi (aucun backend)
-    setTimeout(() => {
-      this.envoiEnCours.set(false);
+    this.erreurEnvoi.set('');
+
+    try {
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          nom: this.nom().trim(),
+          email: this.email().trim(),
+          telephone: this.telephone().trim() || 'Non renseigné',
+          interet: this.interet().trim() || 'Non précisé',
+          message: this.message().trim(),
+          reply_to: this.email().trim(),
+        },
+        { publicKey },
+      );
       this.envoye.set(true);
-    }, 1400);
+    } catch (err) {
+      console.error('EmailJS error', err);
+      this.erreurEnvoi.set(
+        'L’envoi a échoué. Réessayez ou contactez-nous via WhatsApp au 696 649 878.',
+      );
+    } finally {
+      this.envoiEnCours.set(false);
+    }
   }
 
   nouveauMessage(): void {
     this.envoye.set(false);
+    this.erreurEnvoi.set('');
     this.nom.set('');
     this.email.set('');
     this.telephone.set('');
