@@ -1,0 +1,8 @@
+name = "maglinguainstitut"
+compatibility_date = "2026-07-11"
+workers_dev = true
+
+# Site Angular statique — ne pas laisser Wrangler auto-détecter Angular 18
+[assets]
+directory = "./dist/mag-lingua-institut/browser"
+not_found_handling = "single-page-application"
