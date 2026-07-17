@@ -66,7 +66,8 @@ export interface TarifLangue {
 export interface CoursVacances {
   matieres: string[];
   prix: string;
-  periode: string;
+  debut: string; // date de début (pour le compte à rebours)
+  periode: string; // texte complet de la période
   publicCible: string;
 }
 
@@ -162,7 +163,7 @@ export const RESEAUX_SOCIAUX: ReseauSocial[] = [
 ];
 
 export const FRAIS_INSCRIPTION = '15 000 FCFA';
-export const DEBUT_INSCRIPTION = '15 Juillet';
+export const DEBUT_INSCRIPTION = 'lundi 20 Juillet';
 
 export const AVIS: Avis[] = [
   {
@@ -250,6 +251,7 @@ export const TARIFS_LANGUES: TarifLangue[] = [
 export const COURS_VACANCES: CoursVacances = {
   matieres: ['Anglais', 'Français', 'Mathématiques', 'Physique'],
   prix: '50 000',
+  debut: '21 Juillet',
   periode: 'Du 21 juillet au 19 août',
   publicCible: 'Élèves',
 };
@@ -269,4 +271,5 @@ export const IMAGES = {
   hero: 'etudiants.jpg',
   services: 'services.jpg',
   etudes: 'etudiante.jpg',
+  vacances: 'vacances.jpg',
 };

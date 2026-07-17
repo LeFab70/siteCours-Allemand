@@ -191,22 +191,34 @@
           <span class="text-2xl">🎓</span>
           <h3 class="text-brand-navy font-extrabold text-xl">Début des inscriptions</h3>
         </div>
-        <p class="text-gray-500 text-sm mb-6">Ne manquez pas la rentrée — le <strong>{{ debut }}</strong>.</p>
 
-        <!-- Compteur -->
-        <div class="grid grid-cols-4 gap-3 mb-6">
-          @for (unit of [
-            { v: compteur().jours, l: 'Jours' },
-            { v: compteur().heures, l: 'Heures' },
-            { v: compteur().minutes, l: 'Min' },
-            { v: compteur().secondes, l: 'Sec' }
-          ]; track unit.l) {
-            <div class="bg-gradient-to-b from-brand-navy to-brand-blue text-white rounded-2xl py-3 text-center shadow-md">
-              <div class="text-2xl sm:text-3xl font-black tabular-nums">{{ unit.v }}</div>
-              <div class="text-[10px] uppercase tracking-wider text-white/70">{{ unit.l }}</div>
-            </div>
-          }
-        </div>
+        @if (!inscriptionsOuvertes()) {
+          <p class="text-gray-500 text-sm mb-6">
+            Ne manquez pas la rentrée — le <strong>{{ debut }}</strong>. Les inscriptions se poursuivent&nbsp;!
+          </p>
+
+          <!-- Compteur -->
+          <div class="grid grid-cols-4 gap-3 mb-6">
+            @for (unit of [
+              { v: compteur().jours, l: 'Jours' },
+              { v: compteur().heures, l: 'Heures' },
+              { v: compteur().minutes, l: 'Min' },
+              { v: compteur().secondes, l: 'Sec' }
+            ]; track unit.l) {
+              <div class="bg-gradient-to-b from-brand-navy to-brand-blue text-white rounded-2xl py-3 text-center shadow-md">
+                <div class="text-2xl sm:text-3xl font-black tabular-nums">{{ unit.v }}</div>
+                <div class="text-[10px] uppercase tracking-wider text-white/70">{{ unit.l }}</div>
+              </div>
+            }
+          </div>
+        } @else {
+          <div class="flex items-center gap-3 bg-brand-green/10 text-brand-green rounded-2xl p-4 mb-6">
+            <span class="text-2xl">✅</span>
+            <p class="font-bold text-sm">
+              La rentrée du {{ debut }} est lancée — les inscriptions se poursuivent&nbsp;!
+            </p>
+          </div>
+        }
 
         <div class="grid grid-cols-2 gap-3">
           <div class="bg-brand-cream rounded-2xl p-4 text-center">
@@ -561,28 +573,65 @@
       </p>
     </div>
 
-    <div class="grid md:grid-cols-2 gap-8 items-center">
-      <div appReveal>
-        <div class="grid grid-cols-2 gap-4">
-          @for (matiere of coursVacances.matieres; track matiere; let i = $index) {
-            <div
-              appReveal
-              [class]="'reveal-delay-' + (i + 1)"
-              class="bg-white rounded-2xl p-5 shadow-md text-center hover:shadow-xl hover:-translate-y-1 transition-all"
-            >
-              <div class="font-bold text-brand-navy">{{ matiere }}</div>
-            </div>
-          }
+    <div class="grid lg:grid-cols-5 gap-8 items-stretch">
+      <!-- Visuel -->
+      <div class="lg:col-span-2 relative" appReveal>
+        <img
+          [src]="images.vacances"
+          alt="Élèves en cours de vacances dans une salle de classe"
+          loading="lazy"
+          class="rounded-3xl shadow-2xl w-full h-56 lg:h-full object-cover hover:scale-[1.02] transition-transform duration-500"
+        />
+        <div class="absolute -bottom-5 -right-3 bg-white rounded-2xl shadow-xl px-4 py-3 flex items-center gap-2">
+          <span class="text-xl">👩‍🏫</span>
+          <span class="text-sm font-bold text-brand-navy">Petits groupes encadrés</span>
         </div>
       </div>
 
-      <div appReveal class="reveal-delay-2 bg-white rounded-3xl shadow-xl p-8 text-center">
+      <!-- Matières -->
+      <div class="lg:col-span-1 grid grid-cols-2 lg:grid-cols-1 gap-4" appReveal>
+        @for (matiere of coursVacances.matieres; track matiere; let i = $index) {
+          <div
+            appReveal
+            [class]="'reveal-delay-' + (i + 1)"
+            class="bg-white rounded-2xl p-5 shadow-md text-center hover:shadow-xl hover:-translate-y-1 transition-all flex items-center justify-center"
+          >
+            <div class="font-bold text-brand-navy">{{ matiere }}</div>
+          </div>
+        }
+      </div>
+
+      <!-- Tarif + compte à rebours -->
+      <div appReveal class="lg:col-span-2 reveal-delay-2 bg-white rounded-3xl shadow-xl p-8 text-center flex flex-col justify-center">
         <div class="text-4xl mb-2">☀️</div>
         <div class="text-sm text-gray-500 font-medium">Tarif unique — {{ coursVacances.publicCible }}</div>
         <div class="text-4xl font-black text-brand-orange mt-1">
           {{ coursVacances.prix }} <span class="text-lg text-gray-400 font-semibold">FCFA</span>
         </div>
         <div class="text-sm text-gray-500 mt-2 font-medium">{{ coursVacances.periode }}</div>
+
+        @if (!vacancesCommencees()) {
+          <div class="grid grid-cols-4 gap-2 mt-5">
+            @for (unit of [
+              { v: compteurVacances().jours, l: 'Jours' },
+              { v: compteurVacances().heures, l: 'Heures' },
+              { v: compteurVacances().minutes, l: 'Min' },
+              { v: compteurVacances().secondes, l: 'Sec' }
+            ]; track unit.l) {
+              <div class="bg-gradient-to-b from-brand-orange to-brand-orange-light text-white rounded-xl py-2 text-center shadow-md">
+                <div class="text-lg sm:text-xl font-black tabular-nums">{{ unit.v }}</div>
+                <div class="text-[9px] uppercase tracking-wider text-white/80">{{ unit.l }}</div>
+              </div>
+            }
+          </div>
+          <div class="text-[11px] text-gray-400 mt-2">avant le début — {{ coursVacances.debut }}</div>
+        } @else {
+          <div class="flex items-center justify-center gap-2 bg-brand-green/10 text-brand-green rounded-2xl p-3 mt-5">
+            <span class="text-lg">✅</span>
+            <span class="font-bold text-sm">Cours en cours — inscriptions toujours ouvertes&nbsp;!</span>
+          </div>
+        }
+
         <button
           (click)="choisirVacances()"
           class="mt-6 w-full shine-effect inline-flex items-center justify-center gap-2 bg-brand-orange hover:bg-brand-orange-light text-white font-bold py-3.5 rounded-full shadow-lg shadow-brand-orange/30 hover:-translate-y-1 transition-all"
@@ -830,8 +879,13 @@
       <div class="lg:col-span-2" appReveal>
         <h2 class="text-3xl sm:text-5xl font-black">Prêt à commencer&nbsp;?</h2>
         <p class="text-white/80 mt-4 max-w-xl">
-          Les inscriptions démarrent le <strong class="text-brand-orange-light">{{ debut }}</strong>.
-          Réservez votre place dès maintenant.
+          @if (!inscriptionsOuvertes()) {
+            La rentrée est prévue le <strong class="text-brand-orange-light">{{ debut }}</strong>
+            et les inscriptions se poursuivent. Réservez votre place dès maintenant.
+          } @else {
+            La rentrée du <strong class="text-brand-orange-light">{{ debut }}</strong> est lancée —
+            les inscriptions se poursuivent. Réservez votre place dès maintenant.
+          }
         </p>
         <div class="grid sm:grid-cols-2 gap-4 mt-8">
           <div class="bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/15 transition">
@@ -841,7 +895,7 @@
           </div>
           <div class="bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/15 transition">
             <div class="text-3xl">📅</div>
-            <div class="text-sm text-white/70 mt-2">Début d'inscription</div>
+            <div class="text-sm text-white/70 mt-2">Rentrée</div>
             <div class="text-2xl font-black text-brand-orange-light">{{ debut }}</div>
           </div>
         </div>
