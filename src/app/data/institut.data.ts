@@ -98,6 +98,8 @@ export const EXAMENS: Examen[] = [
   { sigle: 'TOEFL', description: 'Test of English as a Foreign Language', langue: 'Anglais', accent: 'text-brand-blue' },
   { sigle: 'CILS', description: "Certification officielle d'italien", langue: 'Italien', accent: 'text-brand-green' },
   { sigle: 'PLIDA', description: "Certification officielle d'italien", langue: 'Italien', accent: 'text-brand-navy' },
+  { sigle: 'CELI', description: "Certificat de connaissance de la langue italienne", langue: 'Italien', accent: 'text-brand-orange' },
+  { sigle: 'CIC', description: "Certification d'italien commercial", langue: 'Italien', accent: 'text-red-600' },
 ];
 
 export const SERVICES_VISA: ServiceVisa[] = [
@@ -110,7 +112,7 @@ export const SERVICES_VISA: ServiceVisa[] = [
 export const INFO_CONTACT: InfoContact = {
   telephones: ['696 649 878', '679 800 266'], // Orange (WhatsApp) en premier, puis MTN
   email: 'maglinguainstitut@gmail.com',
-  siteWeb: 'www.maglinguainstitut.com',
+  siteWeb: 'maglinguainstitut.com',
   facebook: 'Mag Lingua Institut',
   facebookUrl: 'https://www.facebook.com/maglinguainstitut',
   adresse: "Yassa, Immeuble voisin à l'Institut Supérieur la Perle, Chez Mag Lingua Institut",
