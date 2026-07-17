@@ -56,6 +56,28 @@ export interface Tarif {
   populaire?: boolean;
 }
 
+export interface TarifLangue {
+  nom: string;
+  drapeau: string;
+  prixNiveau: string; // FCFA par niveau
+  couleur: string; // classe de dégradé tailwind
+}
+
+export interface CoursVacances {
+  matieres: string[];
+  prix: string;
+  periode: string;
+  publicCible: string;
+}
+
+export interface TarifExamensIntl {
+  sigles: string[];
+  prix: string;
+  duree: string;
+  reductionBacheliers: string;
+  noteInternes: string;
+}
+
 export const LANGUES: Langue[] = [
   { nom: 'Français', drapeau: '🇫🇷', slogan: 'Parlez, comprenez, réussissez.', couleur: 'from-blue-600 to-blue-800' },
   { nom: 'Anglais', drapeau: '🇬🇧', slogan: 'Communiquez avec le monde.', couleur: 'from-indigo-600 to-blue-900' },
@@ -217,6 +239,29 @@ export const TARIFS: Tarif[] = [
   { niveau: 'B2', scolarite: '115 000', manuel: '20 000', duree: '12 semaines' },
   { niveau: 'C1', scolarite: '110 000', manuel: '20 000', duree: '12 semaines' },
 ];
+
+/** Tarifs par niveau pour les langues à prix forfaitaire (hors Français/Anglais/Allemand ci-dessus) */
+export const TARIFS_LANGUES: TarifLangue[] = [
+  { nom: 'Italien', drapeau: '🇮🇹', prixNiveau: '100 000', couleur: 'from-green-600 to-emerald-800' },
+  { nom: 'Chinois', drapeau: '🇨🇳', prixNiveau: '130 000', couleur: 'from-red-600 to-rose-800' },
+  { nom: 'Espagnol', drapeau: '🇪🇸', prixNiveau: '130 000', couleur: 'from-orange-500 to-red-700' },
+];
+
+export const COURS_VACANCES: CoursVacances = {
+  matieres: ['Anglais', 'Français', 'Mathématiques', 'Physique'],
+  prix: '50 000',
+  periode: 'Du 21 juillet au 19 août',
+  publicCible: 'Élèves',
+};
+
+export const TARIF_EXAMENS_INTL: TarifExamensIntl = {
+  sigles: ['TCF', 'TOEFL', 'IELTS'],
+  prix: '80 000',
+  duree: '2 mois',
+  reductionBacheliers: '10%',
+  noteInternes:
+    'Préparation gratuite aux examens pour les internes (apprenants déjà inscrits à un cours).',
+};
 
 // Images d'illustration (locales) — étudiants africains, thème apprentissage
 export const IMAGES = {

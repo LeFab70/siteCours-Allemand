@@ -24,6 +24,9 @@ import {
   SERVICES,
   SERVICES_NB,
   TARIFS,
+  TARIFS_LANGUES,
+  COURS_VACANCES,
+  TARIF_EXAMENS_INTL,
   IMAGES,
   RESEAUX_SOCIAUX,
 } from './data/institut.data';
@@ -58,6 +61,9 @@ export class App implements OnInit, OnDestroy {
   readonly services = SERVICES;
   readonly servicesNb = SERVICES_NB;
   readonly tarifs = TARIFS;
+  readonly tarifsLangues = TARIFS_LANGUES;
+  readonly coursVacances = COURS_VACANCES;
+  readonly tarifExamens = TARIF_EXAMENS_INTL;
   readonly images = IMAGES;
   readonly reseaux = RESEAUX_SOCIAUX;
 
@@ -123,6 +129,7 @@ export class App implements OnInit, OnDestroy {
     { label: 'Langues', anchor: 'langues' },
     { label: 'Examens', anchor: 'examens' },
     { label: 'Tarifs', anchor: 'tarifs' },
+    { label: 'Vacances', anchor: 'vacances' },
     { label: 'Visa', anchor: 'visa' },
     { label: 'Avis', anchor: 'avis' },
     { label: 'Contact', anchor: 'contact' },
@@ -234,6 +241,11 @@ export class App implements OnInit, OnDestroy {
 
   choisirLangue(nom: string): void {
     this.interet.set(nom);
+    this.scrollTo('contact');
+  }
+
+  choisirVacances(): void {
+    this.interet.set('Cours de vacances');
     this.scrollTo('contact');
   }
 

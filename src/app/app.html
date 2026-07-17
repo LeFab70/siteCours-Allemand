@@ -393,6 +393,43 @@
         </div>
       }
     </div>
+
+    <!-- Tarif préparation TCF / TOEFL / IELTS -->
+    <div class="mt-12 max-w-3xl mx-auto" appReveal>
+      <div class="bg-brand-navy text-white rounded-3xl p-8 shadow-xl relative overflow-hidden">
+        <div class="absolute -top-10 -right-10 w-40 h-40 bg-brand-orange/20 rounded-full blur-2xl"></div>
+        <div class="relative">
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            @for (sigle of tarifExamens.sigles; track sigle) {
+              <span class="text-xs font-bold uppercase bg-white/15 px-3 py-1 rounded-full">{{ sigle }}</span>
+            }
+          </div>
+          <div class="text-3xl font-black">
+            {{ tarifExamens.prix }}
+            <span class="text-base text-white/70 font-semibold">FCFA / {{ tarifExamens.duree }}</span>
+          </div>
+          <ul class="mt-4 space-y-2 text-sm text-white/85">
+            <li class="flex items-start gap-2">
+              <span>🎓</span>
+              <span>
+                <strong class="text-brand-orange-light">-{{ tarifExamens.reductionBacheliers }}</strong>
+                de réduction pour les nouveaux bacheliers.
+              </span>
+            </li>
+            <li class="flex items-start gap-2">
+              <span>✅</span>
+              <span>{{ tarifExamens.noteInternes }}</span>
+            </li>
+          </ul>
+          <button
+            (click)="scrollTo('contact')"
+            class="mt-6 shine-effect inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-light text-white font-bold px-6 py-3 rounded-full shadow-lg transition-all hover:-translate-y-1"
+          >
+            Je me prépare à l'examen
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -465,6 +502,40 @@
       }
     </div>
 
+    <!-- Tarifs par langue à prix forfaitaire -->
+    <div class="mt-16" appReveal>
+      <h3 class="text-xl sm:text-2xl font-black text-brand-navy text-center mb-8">
+        Tarifs Italien, Chinois & Espagnol
+      </h3>
+      <div class="grid sm:grid-cols-3 gap-6">
+        @for (t of tarifsLangues; track t.nom; let i = $index) {
+          <div
+            appReveal
+            [class]="'bg-gradient-to-br ' + t.couleur + ' reveal-delay-' + (i + 1)"
+            class="rounded-3xl p-6 text-white shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all"
+          >
+            <div class="flex items-center gap-3">
+              <span class="text-3xl">{{ t.drapeau }}</span>
+              <h4 class="text-xl font-extrabold">{{ t.nom }}</h4>
+            </div>
+            <div class="mt-4 text-3xl font-black">
+              {{ t.prixNiveau }}
+              <span class="text-sm font-semibold text-white/80 block mt-0.5">FCFA / niveau</span>
+            </div>
+            <button
+              (click)="choisirLangue(t.nom)"
+              class="mt-5 inline-flex items-center gap-1 font-semibold text-sm bg-white/15 hover:bg-white/25 px-4 py-2 rounded-full transition"
+            >
+              Je m'inscris
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </button>
+          </div>
+        }
+      </div>
+    </div>
+
     <div class="text-center mt-10" appReveal>
       <button
         (click)="scrollTo('contact')"
@@ -472,6 +543,53 @@
       >
         S'inscrire maintenant
       </button>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COURS DE VACANCES ============ -->
+<section id="vacances" class="py-24 bg-brand-cream overflow-hidden relative">
+  <div class="absolute -top-16 -right-16 w-72 h-72 bg-brand-orange/10 rounded-full blur-3xl"></div>
+  <div class="absolute -bottom-16 -left-16 w-72 h-72 bg-brand-blue/10 rounded-full blur-3xl"></div>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 relative">
+    <div class="text-center mb-14" appReveal>
+      <span class="text-brand-orange font-bold tracking-widest text-sm uppercase">Spécial vacances</span>
+      <h2 class="text-3xl sm:text-5xl font-black text-brand-navy mt-2">Cours de vacances pour élèves</h2>
+      <p class="text-gray-500 mt-4 max-w-2xl mx-auto">
+        Révisez et prenez de l'avance en petits groupes, en Anglais, Français, Mathématiques et Physique.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-8 items-center">
+      <div appReveal>
+        <div class="grid grid-cols-2 gap-4">
+          @for (matiere of coursVacances.matieres; track matiere; let i = $index) {
+            <div
+              appReveal
+              [class]="'reveal-delay-' + (i + 1)"
+              class="bg-white rounded-2xl p-5 shadow-md text-center hover:shadow-xl hover:-translate-y-1 transition-all"
+            >
+              <div class="font-bold text-brand-navy">{{ matiere }}</div>
+            </div>
+          }
+        </div>
+      </div>
+
+      <div appReveal class="reveal-delay-2 bg-white rounded-3xl shadow-xl p-8 text-center">
+        <div class="text-4xl mb-2">☀️</div>
+        <div class="text-sm text-gray-500 font-medium">Tarif unique — {{ coursVacances.publicCible }}</div>
+        <div class="text-4xl font-black text-brand-orange mt-1">
+          {{ coursVacances.prix }} <span class="text-lg text-gray-400 font-semibold">FCFA</span>
+        </div>
+        <div class="text-sm text-gray-500 mt-2 font-medium">{{ coursVacances.periode }}</div>
+        <button
+          (click)="choisirVacances()"
+          class="mt-6 w-full shine-effect inline-flex items-center justify-center gap-2 bg-brand-orange hover:bg-brand-orange-light text-white font-bold py-3.5 rounded-full shadow-lg shadow-brand-orange/30 hover:-translate-y-1 transition-all"
+        >
+          📩 M'inscrire aux cours de vacances
+        </button>
+      </div>
     </div>
   </div>
 </section>
@@ -879,6 +997,7 @@
                     <option [value]="l.nom">Cours de {{ l.nom }}</option>
                   }
                   <option value="Préparation examen">Préparation aux examens</option>
+                  <option value="Cours de vacances">Cours de vacances</option>
                   <option value="Assistance visa">Assistance visa</option>
                   <option value="Informatique">Formation informatique</option>
                 </select>
