@@ -142,20 +142,6 @@ export const RESEAUX_SOCIAUX: ReseauSocial[] = [
     description: 'Vidéos & tutoriels',
   },
   {
-    nom: 'Instagram',
-    url: 'https://www.instagram.com/maglinguainstitut',
-    handle: '@maglinguainstitut',
-    couleur: '#E4405F',
-    description: 'Stories & coulisses',
-  },
-  {
-    nom: 'LinkedIn',
-    url: 'https://www.linkedin.com/company/maglinguainstitut',
-    handle: 'Mag Lingua Institut',
-    couleur: '#0A66C2',
-    description: 'Formations & carrières',
-  },
-  {
     nom: 'WhatsApp',
     url: 'https://wa.me/237679800266?text=Bonjour%20MAG%20LINGUA%20INSTITUT',
     handle: '679 800 266',
