@@ -129,8 +129,8 @@ export const RESEAUX_SOCIAUX: ReseauSocial[] = [
   },
   {
     nom: 'TikTok',
-    url: 'https://www.tiktok.com/@maglinguainstitut',
-    handle: '@maglinguainstitut',
+    url: 'https://www.tiktok.com/@maglingua.institut',
+    handle: '@maglingua.institut',
     couleur: '#010101',
     description: 'Cours courts & tips',
   },
