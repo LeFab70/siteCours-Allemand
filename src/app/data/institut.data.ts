@@ -114,7 +114,7 @@ export const INFO_CONTACT: InfoContact = {
   email: 'maglinguainstitut@gmail.com',
   siteWeb: 'maglinguainstitut.com',
   facebook: 'Mag Lingua Institut',
-  facebookUrl: 'https://www.facebook.com/maglinguainstitut',
+  facebookUrl: 'https://www.facebook.com/profile.php?id=61591796501248',
   adresse: "Yassa, Immeuble voisin à l'Institut Supérieur la Perle, Chez Mag Lingua Institut",
 };
 
@@ -122,7 +122,7 @@ export const INFO_CONTACT: InfoContact = {
 export const RESEAUX_SOCIAUX: ReseauSocial[] = [
   {
     nom: 'Facebook',
-    url: 'https://www.facebook.com/maglinguainstitut',
+    url: 'https://www.facebook.com/profile.php?id=61591796501248',
     handle: '@Mag Lingua Institut',
     couleur: '#1877F2',
     description: 'Actualités & communauté',
