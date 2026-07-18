@@ -226,7 +226,7 @@ export const TARIFS: Tarif[] = [
   { niveau: 'A2', scolarite: '100 000', manuel: '15 000', duree: '10 semaines' },
   { niveau: 'B1', scolarite: '115 000', manuel: '20 000', duree: '12 semaines', populaire: true },
   { niveau: 'B2', scolarite: '115 000', manuel: '20 000', duree: '12 semaines' },
-  { niveau: 'C1', scolarite: '110 000', manuel: '20 000', duree: '12 semaines' },
+  { niveau: 'C1', scolarite: '130 000', manuel: '20 000', duree: '12 semaines' },
 ];
 
 /** Tarifs par niveau pour les langues à prix forfaitaire (hors Français/Anglais/Allemand ci-dessus) */
