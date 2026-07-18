@@ -325,7 +325,7 @@ export class App implements OnInit, OnDestroy {
     } catch (err) {
       console.error('EmailJS error', err);
       this.erreurEnvoi.set(
-        'L’envoi a échoué. Réessayez ou contactez-nous via WhatsApp au 696 649 878.',
+        'L’envoi a échoué. Réessayez ou contactez-nous via WhatsApp au 679 800 266.',
       );
     } finally {
       this.envoiEnCours.set(false);
@@ -342,9 +342,9 @@ export class App implements OnInit, OnDestroy {
     this.message.set('');
   }
 
-  // Lien WhatsApp (Orange : 696 649 878)
+  // Lien WhatsApp (MTN, vérifié : 679 800 266)
   get lienWhatsapp(): string {
-    const numero = '237696649878';
+    const numero = '237679800266';
     const texte = encodeURIComponent(
       'Bonjour MAG LINGUA INSTITUT, je souhaite avoir des informations sur vos formations.',
     );

@@ -133,7 +133,7 @@ export class Chatbot {
 
     // Inscription / dates
     if (contient('inscri', 'quand', 'date', 'rentree', 'debut', 'commence', 'place')) {
-      return 'Les inscriptions débutent le 15 Juillet 📅. Réservez votre place via le formulaire de contact ou passez directement à l’institut !';
+      return 'La rentrée est prévue le lundi 20 Juillet 📅 et les inscriptions se poursuivent. Réservez votre place via le formulaire de contact ou passez directement à l’institut !';
     }
 
     // Visa / voyage
@@ -153,10 +153,10 @@ export class Chatbot {
 
     // Contact
     if (contient('contact', 'telephone', 'numero', 'appeler', 'joindre', 'email', 'mail')) {
-      return 'Contactez-nous au 696 649 878 (Orange / WhatsApp) ou 679 800 266 (MTN), par email à maglinguainstitut@gmail.com 📞. Le formulaire de contact est juste en dessous !';
+      return 'Contactez-nous au 679 800 266 (MTN / WhatsApp) ou 696 649 878 (Orange), par email à maglinguainstitut@gmail.com 📞. Le formulaire de contact est juste en dessous !';
     }
     if (contient('whatsapp', 'wpp', 'chat')) {
-      return 'Vous pouvez nous écrire directement sur WhatsApp au 696 649 878 (Orange) 💬 — bouton disponible dans la section Contact !';
+      return 'Vous pouvez nous écrire directement sur WhatsApp au 679 800 266 (MTN) 💬 — bouton disponible dans la section Contact !';
     }
 
     // Adresse
@@ -187,13 +187,13 @@ export class Chatbot {
       ]);
     }
     if (contient('au revoir', 'bye', 'a bientot', 'ciao')) {
-      return 'À bientôt ! 👋 Pensez à réserver votre place, les inscriptions ouvrent le 15 Juillet.';
+      return 'À bientôt ! 👋 Pensez à réserver votre place, la rentrée est le lundi 20 Juillet et les inscriptions se poursuivent.';
     }
 
     // Repli
     return auHasard([
       "Bonne question ! Notre équipe pourra vous répondre en détail 😊. Vous pouvez me demander : langues, niveaux, tarifs, examens, visa, horaires ou contact.",
-      "Je n’ai pas la réponse exacte, mais l’équipe oui ! Écrivez-nous via le formulaire ou WhatsApp au 696 649 878. Essayez aussi : « tarifs », « visa » ou « inscriptions ».",
+      "Je n’ai pas la réponse exacte, mais l’équipe oui ! Écrivez-nous via le formulaire ou WhatsApp au 679 800 266. Essayez aussi : « tarifs », « visa » ou « inscriptions ».",
     ]);
   }
 
