@@ -123,7 +123,7 @@ export class Chatbot {
 
     // Modalité présentiel / en ligne
     if (contient('en ligne', 'distance', 'presentiel', 'zoom', 'ligne', 'online')) {
-      return 'Les cours se déroulent en présentiel à Yassa, et certaines formules sont disponibles en ligne 💻. Dites-nous votre préférence !';
+      return 'Les cours se déroulent en présentiel à Douala - Yassa, et certaines formules sont disponibles en ligne 💻. Dites-nous votre préférence !';
     }
 
     // Tarifs / frais
@@ -161,7 +161,7 @@ export class Chatbot {
 
     // Adresse
     if (contient('adresse', 'ou ', 'situe', 'localisation', 'yassa', 'trouver', 'plan', 'venir')) {
-      return 'Nous sommes à Yassa 📍, dans l’immeuble voisin de l’Institut Supérieur la Perle (Chez Mag Lingua Institut).';
+      return 'Nous sommes à Douala - Yassa 📍, dans l’immeuble voisin de l’Institut Supérieur la Perle (Chez Mag Lingua Institut).';
     }
 
     // Horaires

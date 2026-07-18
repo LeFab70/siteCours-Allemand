@@ -115,7 +115,7 @@ export const INFO_CONTACT: InfoContact = {
   siteWeb: 'maglinguainstitut.com',
   facebook: 'Mag Lingua Institut',
   facebookUrl: 'https://www.facebook.com/profile.php?id=61591799831083',
-  adresse: "Yassa, Immeuble voisin à l'Institut Supérieur la Perle, Chez Mag Lingua Institut",
+  adresse: "Douala - Yassa, Immeuble voisin à l'Institut Supérieur la Perle, Chez Mag Lingua Institut",
 };
 
 /** Liens sociaux (placeholders à remplacer par les vrais comptes) — utiles pour monétisation & trafic */
