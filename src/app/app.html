@@ -192,33 +192,12 @@
           <h3 class="text-brand-navy font-extrabold text-xl">Début des inscriptions</h3>
         </div>
 
-        @if (!inscriptionsOuvertes()) {
-          <p class="text-gray-500 text-sm mb-6">
-            Ne manquez pas la rentrée — le <strong>{{ debut }}</strong>. Les inscriptions se poursuivent&nbsp;!
+        <div class="flex items-center gap-3 bg-brand-green/10 text-brand-green rounded-2xl p-4 mb-6">
+          <span class="text-2xl">✅</span>
+          <p class="font-bold text-sm">
+            Nouvelle rentrée chaque mois — les inscriptions sont ouvertes en continu&nbsp;!
           </p>
-
-          <!-- Compteur -->
-          <div class="grid grid-cols-4 gap-3 mb-6">
-            @for (unit of [
-              { v: compteur().jours, l: 'Jours' },
-              { v: compteur().heures, l: 'Heures' },
-              { v: compteur().minutes, l: 'Min' },
-              { v: compteur().secondes, l: 'Sec' }
-            ]; track unit.l) {
-              <div class="bg-gradient-to-b from-brand-navy to-brand-blue text-white rounded-2xl py-3 text-center shadow-md">
-                <div class="text-2xl sm:text-3xl font-black tabular-nums">{{ unit.v }}</div>
-                <div class="text-[10px] uppercase tracking-wider text-white/70">{{ unit.l }}</div>
-              </div>
-            }
-          </div>
-        } @else {
-          <div class="flex items-center gap-3 bg-brand-green/10 text-brand-green rounded-2xl p-4 mb-6">
-            <span class="text-2xl">✅</span>
-            <p class="font-bold text-sm">
-              La rentrée du {{ debut }} est lancée — les inscriptions se poursuivent&nbsp;!
-            </p>
-          </div>
-        }
+        </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div class="bg-brand-cream rounded-2xl p-4 text-center">
@@ -875,13 +854,8 @@
       <div class="lg:col-span-2" appReveal>
         <h2 class="text-3xl sm:text-5xl font-black">Prêt à commencer&nbsp;?</h2>
         <p class="text-white/80 mt-4 max-w-xl">
-          @if (!inscriptionsOuvertes()) {
-            La rentrée est prévue le <strong class="text-brand-orange-light">{{ debut }}</strong>
-            et les inscriptions se poursuivent. Réservez votre place dès maintenant.
-          } @else {
-            La rentrée du <strong class="text-brand-orange-light">{{ debut }}</strong> est lancée —
-            les inscriptions se poursuivent. Réservez votre place dès maintenant.
-          }
+          Une <strong class="text-brand-orange-light">nouvelle rentrée chaque mois</strong> —
+          les inscriptions sont ouvertes en continu. Réservez votre place dès maintenant.
         </p>
         <div class="grid sm:grid-cols-2 gap-4 mt-8">
           <div class="bg-white/10 backdrop-blur rounded-2xl p-6 hover:bg-white/15 transition">

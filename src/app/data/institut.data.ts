@@ -151,7 +151,7 @@ export const RESEAUX_SOCIAUX: ReseauSocial[] = [
 ];
 
 export const FRAIS_INSCRIPTION = '15 000 FCFA';
-export const DEBUT_INSCRIPTION = 'lundi 20 Juillet';
+export const DEBUT_INSCRIPTION = 'Tous les mois';
 
 export const AVIS: Avis[] = [
   {

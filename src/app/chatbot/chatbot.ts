@@ -133,7 +133,7 @@ export class Chatbot {
 
     // Inscription / dates
     if (contient('inscri', 'quand', 'date', 'rentree', 'debut', 'commence', 'place')) {
-      return 'La rentrée est prévue le lundi 20 Juillet 📅 et les inscriptions se poursuivent. Réservez votre place via le formulaire de contact ou passez directement à l’institut !';
+      return 'Une nouvelle rentrée a lieu chaque mois 📅 et les inscriptions sont ouvertes en continu. Réservez votre place via le formulaire de contact ou passez directement à l’institut !';
     }
 
     // Visa / voyage
@@ -187,7 +187,7 @@ export class Chatbot {
       ]);
     }
     if (contient('au revoir', 'bye', 'a bientot', 'ciao')) {
-      return 'À bientôt ! 👋 Pensez à réserver votre place, la rentrée est le lundi 20 Juillet et les inscriptions se poursuivent.';
+      return 'À bientôt ! 👋 Pensez à réserver votre place, une nouvelle rentrée a lieu chaque mois et les inscriptions sont ouvertes en continu.';
     }
 
     // Repli

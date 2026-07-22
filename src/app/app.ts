@@ -152,15 +152,11 @@ export class App implements OnInit, OnDestroy {
     return f === 'Tous' ? this.examens : this.examens.filter((e) => e.langue === f);
   });
 
-  // ===== Comptes à rebours (rentrée & cours de vacances) =====
+  // ===== Compte à rebours (cours de vacances : 21 juillet → 19 août) =====
   private readonly compteurInitial: Compteur = { jours: 0, heures: 0, minutes: 0, secondes: 0 };
-  readonly compteur = signal<Compteur>(this.compteurInitial);
-  readonly inscriptionsOuvertes = signal(false);
   readonly compteurVacances = signal<Compteur>(this.compteurInitial);
   readonly vacancesCommencees = signal(false);
   private timer?: ReturnType<typeof setInterval>;
-  private cibleInscription = this.calculerCible(20, 6); // lundi 20 juillet
-  private cibleVacances = this.calculerCible(21, 6); // 21 juillet
 
   // ===== Formulaire de contact (signaux) =====
   readonly nom = signal('');
@@ -205,22 +201,20 @@ export class App implements OnInit, OnDestroy {
     this.doc.defaultView?.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  private calculerCible(jour: number, moisIndex: number): Date {
+  private calculerVacances(): { compteur: Compteur; demarre: boolean } {
     const now = new Date();
-    let annee = now.getFullYear();
-    // Si la date est déjà passée cette année, viser l'année suivante
-    let cible = new Date(annee, moisIndex, jour, 8, 0, 0);
-    if (cible.getTime() < now.getTime()) {
-      cible = new Date(annee + 1, moisIndex, jour, 8, 0, 0);
-    }
-    return cible;
-  }
+    const annee = now.getFullYear();
+    const debut = new Date(annee, 6, 21, 8, 0, 0); // 21 juillet
+    const fin = new Date(annee, 7, 19, 23, 59, 59); // 19 août
 
-  private calculerCompteur(cible: Date): { compteur: Compteur; demarre: boolean } {
-    const diff = cible.getTime() - Date.now();
-    if (diff <= 0) {
+    // Période en cours cette année : plus de compte à rebours, juste "c'est lancé"
+    if (now.getTime() >= debut.getTime() && now.getTime() <= fin.getTime()) {
       return { compteur: this.compteurInitial, demarre: true };
     }
+
+    // Sinon, viser le prochain 21 juillet (cette année si pas encore passé, sinon l'an prochain)
+    const cible = now.getTime() > fin.getTime() ? new Date(annee + 1, 6, 21, 8, 0, 0) : debut;
+    const diff = cible.getTime() - now.getTime();
     const jours = Math.floor(diff / 86_400_000);
     const heures = Math.floor((diff % 86_400_000) / 3_600_000);
     const minutes = Math.floor((diff % 3_600_000) / 60_000);
@@ -229,11 +223,7 @@ export class App implements OnInit, OnDestroy {
   }
 
   private majCompteur(): void {
-    const inscription = this.calculerCompteur(this.cibleInscription);
-    this.compteur.set(inscription.compteur);
-    this.inscriptionsOuvertes.set(inscription.demarre);
-
-    const vacances = this.calculerCompteur(this.cibleVacances);
+    const vacances = this.calculerVacances();
     this.compteurVacances.set(vacances.compteur);
     this.vacancesCommencees.set(vacances.demarre);
   }
