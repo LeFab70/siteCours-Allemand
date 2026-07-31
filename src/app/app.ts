@@ -29,6 +29,8 @@ import {
   TARIF_EXAMENS_INTL,
   IMAGES,
   RESEAUX_SOCIAUX,
+  RONDES_ENTREE_EXPRESS,
+  SOURCE_ENTREE_EXPRESS,
 } from './data/institut.data';
 import emailjs from '@emailjs/browser';
 import { environment } from '../environments/environment';
@@ -66,6 +68,8 @@ export class App implements OnInit, OnDestroy {
   readonly tarifExamens = TARIF_EXAMENS_INTL;
   readonly images = IMAGES;
   readonly reseaux = RESEAUX_SOCIAUX;
+  readonly rondesEntreeExpress = RONDES_ENTREE_EXPRESS;
+  readonly sourceEntreeExpress = SOURCE_ENTREE_EXPRESS;
 
   // Note moyenne des avis clients
   readonly noteMoyenne = computed(() => {
@@ -131,6 +135,7 @@ export class App implements OnInit, OnDestroy {
     { label: 'Tarifs', anchor: 'tarifs' },
     { label: 'Vacances', anchor: 'vacances' },
     { label: 'Visa', anchor: 'visa' },
+    { label: 'Immigration', anchor: 'immigration' },
     { label: 'Avis', anchor: 'avis' },
     { label: 'Contact', anchor: 'contact' },
   ];
@@ -250,6 +255,11 @@ export class App implements OnInit, OnDestroy {
 
   choisirVacances(): void {
     this.interet.set('Cours de vacances');
+    this.scrollTo('contact');
+  }
+
+  choisirImmigration(): void {
+    this.interet.set('Immigration Canada');
     this.scrollTo('contact');
   }
 

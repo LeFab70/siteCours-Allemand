@@ -18,6 +18,13 @@ export interface ServiceVisa {
   icone: string; // emoji
 }
 
+export interface RondeEntreeExpress {
+  date: string;
+  categorie: string;
+  invitations: string;
+  crs: string;
+}
+
 export interface InfoContact {
   telephones: string[];
   email: string;
@@ -261,4 +268,22 @@ export const IMAGES = {
   services: 'services.jpg',
   etudes: 'etudiante.jpg',
   vacances: 'vacances.jpg',
+  canada: 'canada-immigration.jpg',
 };
+
+/** Rondes d'invitations Entrée Express — données publiques IRCC (Immigration, Réfugiés et Citoyenneté Canada) */
+export const RONDES_ENTREE_EXPRESS: RondeEntreeExpress[] = [
+  { date: '22 juin 2026', categorie: 'Programme des candidats des provinces (PCP/PNP)', invitations: '955', crs: '730' },
+  { date: '23 juin 2026', categorie: "Catégorie de l'expérience canadienne (CEC)", invitations: '4 000', crs: '516' },
+  { date: '24 juin 2026', categorie: 'Médecins ayant une expérience de travail canadienne', invitations: '271', crs: '223' },
+  { date: '25 juin 2026', categorie: 'Professions de la santé et des services sociaux', invitations: '4 000', crs: '475' },
+  { date: '6 juillet 2026', categorie: 'Programme des candidats des provinces (PCP/PNP)', invitations: '534', crs: '708' },
+  { date: '7 juillet 2026', categorie: "Catégorie de l'expérience canadienne (CEC)", invitations: '2 000', crs: '517' },
+  { date: '9 juillet 2026', categorie: 'Catégorie de la maîtrise du français', invitations: '5 000', crs: '420' },
+  { date: '10 juillet 2026', categorie: 'Cadres supérieurs ayant une expérience de travail canadienne', invitations: '500', crs: '392' },
+  { date: '20 juillet 2026', categorie: 'Programme des candidats des provinces (PCP/PNP)', invitations: '511', crs: '713' },
+  { date: '21 juillet 2026', categorie: "Catégorie de l'expérience canadienne (CEC)", invitations: '2 000', crs: '516' },
+  { date: '22 juillet 2026', categorie: 'Catégorie de la maîtrise du français', invitations: '5 000', crs: '399' },
+];
+
+export const SOURCE_ENTREE_EXPRESS = 'Source : Immigration, Réfugiés et Citoyenneté Canada (IRCC) — données au 25 juillet 2026.';

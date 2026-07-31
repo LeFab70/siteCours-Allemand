@@ -693,6 +693,65 @@
   </div>
 </section>
 
+<!-- ============ IMMIGRATION CANADA ============ -->
+<section id="immigration" class="relative py-24 overflow-hidden">
+  <!-- Image de fond avec fondu -->
+  <img
+    [src]="images.canada"
+    alt=""
+    aria-hidden="true"
+    loading="lazy"
+    class="absolute inset-0 w-full h-full object-cover object-[75%_30%]"
+  />
+  <div class="absolute inset-0 bg-gradient-to-b from-brand-navy/60 via-brand-navy/80 to-brand-navy"></div>
+  <div class="absolute inset-0 bg-gradient-to-r from-brand-navy/90 via-brand-navy/30 to-brand-navy/90"></div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-12" appReveal>
+      <span class="text-brand-orange-light font-bold tracking-widest text-sm uppercase">🍁 Immigrer au Canada</span>
+      <h2 class="text-3xl sm:text-5xl font-black text-white mt-2">Entrée Express — Dernières rondes d'invitations</h2>
+      <p class="text-white/80 mt-4 max-w-2xl mx-auto">
+        Le Canada invite régulièrement de nouveaux candidats via Entrée Express. Voici les dernières rondes —
+        on vous aide à évaluer vos chances et à monter votre dossier.
+      </p>
+    </div>
+
+    <div class="overflow-x-auto rounded-3xl shadow-2xl" appReveal>
+      <table class="w-full text-left border-collapse bg-white/95 backdrop-blur">
+        <thead>
+          <tr class="bg-brand-navy text-white text-sm">
+            <th class="px-5 py-4 font-bold whitespace-nowrap">Date</th>
+            <th class="px-5 py-4 font-bold">Catégorie / Programme</th>
+            <th class="px-5 py-4 font-bold text-center whitespace-nowrap">Invitations</th>
+            <th class="px-5 py-4 font-bold text-center whitespace-nowrap">Score CRS min.</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (r of rondesEntreeExpress; track r.date + r.categorie) {
+            <tr class="border-b border-gray-100 hover:bg-brand-cream transition-colors">
+              <td class="px-5 py-3 font-semibold text-brand-navy whitespace-nowrap">{{ r.date }}</td>
+              <td class="px-5 py-3 text-gray-700 text-sm">{{ r.categorie }}</td>
+              <td class="px-5 py-3 text-center font-bold text-brand-orange whitespace-nowrap">{{ r.invitations }}</td>
+              <td class="px-5 py-3 text-center font-bold text-brand-navy whitespace-nowrap">{{ r.crs }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <p class="text-white/50 text-xs text-center mt-4">{{ sourceEntreeExpress }}</p>
+
+    <div class="text-center mt-8" appReveal>
+      <button
+        (click)="choisirImmigration()"
+        class="shine-effect inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-light text-white font-bold px-8 py-3.5 rounded-full shadow-lg shadow-brand-orange/30 hover:-translate-y-1 transition-all"
+      >
+        🍁 Évaluer mes chances d'immigrer
+      </button>
+    </div>
+  </div>
+</section>
+
 <!-- ============ AVIS CLIENTS ============ -->
 <section id="avis" class="py-24 bg-white overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6">
@@ -1026,6 +1085,7 @@
                   <option value="Préparation examen">Préparation aux examens</option>
                   <option value="Cours de vacances">Cours de vacances</option>
                   <option value="Assistance visa">Assistance visa</option>
+                  <option value="Immigration Canada">Immigration Canada (Entrée Express)</option>
                   <option value="Informatique">Formation informatique</option>
                 </select>
                 @if (!interet() && (nom() || email() || message())) {
