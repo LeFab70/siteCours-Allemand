@@ -3,6 +3,7 @@ export interface Langue {
   drapeau: string; // emoji drapeau
   slogan: string;
   couleur: string; // classe de dégradé tailwind
+  frequence: string; // rythme des séances
 }
 
 export interface Examen {
@@ -80,12 +81,12 @@ export interface TarifExamensIntl {
 }
 
 export const LANGUES: Langue[] = [
-  { nom: 'Français', drapeau: '🇫🇷', slogan: 'Parlez, comprenez, réussissez.', couleur: 'from-blue-600 to-blue-800' },
-  { nom: 'Anglais', drapeau: '🇬🇧', slogan: 'Communiquez avec le monde.', couleur: 'from-indigo-600 to-blue-900' },
-  { nom: 'Italien', drapeau: '🇮🇹', slogan: "La langue de l'art et de la culture.", couleur: 'from-green-600 to-emerald-800' },
-  { nom: 'Chinois', drapeau: '🇨🇳', slogan: 'Ouvrez-vous au marché de demain.', couleur: 'from-red-600 to-rose-800' },
-  { nom: 'Allemand', drapeau: '🇩🇪', slogan: 'Précision, rigueur et opportunités.', couleur: 'from-yellow-500 to-amber-700' },
-  { nom: 'Espagnol', drapeau: '🇪🇸', slogan: 'Une langue, plusieurs mondes.', couleur: 'from-orange-500 to-red-700' },
+  { nom: 'Français', drapeau: '🇫🇷', slogan: 'Parlez, comprenez, réussissez.', couleur: 'from-blue-600 to-blue-800', frequence: '3 fois par semaine' },
+  { nom: 'Anglais', drapeau: '🇬🇧', slogan: 'Communiquez avec le monde.', couleur: 'from-indigo-600 to-blue-900', frequence: '3 fois par semaine' },
+  { nom: 'Italien', drapeau: '🇮🇹', slogan: "La langue de l'art et de la culture.", couleur: 'from-green-600 to-emerald-800', frequence: '3 fois par semaine' },
+  { nom: 'Chinois', drapeau: '🇨🇳', slogan: 'Ouvrez-vous au marché de demain.', couleur: 'from-red-600 to-rose-800', frequence: '3 fois par semaine' },
+  { nom: 'Allemand', drapeau: '🇩🇪', slogan: 'Précision, rigueur et opportunités.', couleur: 'from-yellow-500 to-amber-700', frequence: 'Lundi à vendredi · 2h/jour' },
+  { nom: 'Espagnol', drapeau: '🇪🇸', slogan: 'Une langue, plusieurs mondes.', couleur: 'from-orange-500 to-red-700', frequence: '3 fois par semaine' },
 ];
 
 export const EXAMENS: Examen[] = [

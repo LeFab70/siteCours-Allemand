@@ -166,7 +166,7 @@ export class Chatbot {
 
     // Horaires
     if (contient('horaire', 'heure', 'ouvert', 'ferme', 'disponible')) {
-      return 'Nos équipes vous accueillent du lundi au samedi. Appelez-nous ou passez nous voir pour convenir d’un créneau 🕘.';
+      return 'Nos équipes vous accueillent du lundi au samedi 🕘. Côté cours : l’allemand se donne du lundi au vendredi (2h/jour), les autres langues (Français, Anglais, Chinois, Italien, Espagnol) 3 fois par semaine.';
     }
 
     // Avis
