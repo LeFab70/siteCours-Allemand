@@ -68,6 +68,18 @@ export class App implements OnInit, OnDestroy {
   readonly tarifExamens = TARIF_EXAMENS_INTL;
   readonly images = IMAGES;
   readonly reseaux = RESEAUX_SOCIAUX;
+  readonly videos = [
+    {
+      src: 'videos/presentation-institut.mp4',
+      poster: 'videos/presentation-institut.jpg',
+      titre: "Présentation de l'institut",
+    },
+    {
+      src: 'videos/message-equipe.mp4',
+      poster: 'videos/message-equipe.jpg',
+      titre: "Le mot de l'équipe",
+    },
+  ];
   readonly rondesEntreeExpress = RONDES_ENTREE_EXPRESS;
   readonly sourceEntreeExpress = SOURCE_ENTREE_EXPRESS;
 

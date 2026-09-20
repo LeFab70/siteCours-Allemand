@@ -250,6 +250,38 @@
   </div>
 </section>
 
+<!-- ============ VIDÉOS ============ -->
+<section id="videos" class="pb-20 pt-4 bg-white overflow-hidden">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-10" appReveal>
+      <span class="text-brand-orange font-bold tracking-widest text-sm uppercase">En vidéo</span>
+      <h2 class="text-3xl sm:text-5xl font-black text-brand-navy mt-2">Découvrez MAG LINGUA INSTITUT</h2>
+      <p class="text-gray-500 mt-4 max-w-2xl mx-auto">
+        Visitez l'institut et écoutez notre équipe vous présenter les formations.
+      </p>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-8 justify-items-center">
+      @for (v of videos; track v.src) {
+        <figure appReveal class="w-full max-w-[320px]">
+          <div class="rounded-3xl overflow-hidden shadow-2xl ring-4 ring-brand-orange/20 bg-brand-navy aspect-[9/16]">
+            <video
+              class="w-full h-full object-cover"
+              [src]="v.src"
+              [poster]="v.poster"
+              controls
+              playsinline
+              preload="metadata"
+              [attr.aria-label]="v.titre"
+            ></video>
+          </div>
+          <figcaption class="text-center font-bold text-brand-navy mt-4">{{ v.titre }}</figcaption>
+        </figure>
+      }
+    </div>
+  </div>
+</section>
+
 <!-- ============ NOS SERVICES ============ -->
 <section id="services" class="py-24 bg-white overflow-hidden">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-14 items-center">
