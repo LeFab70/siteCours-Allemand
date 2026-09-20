@@ -251,36 +251,148 @@
 </section>
 
 <!-- ============ VIDÉOS ============ -->
-<section id="videos" class="pb-20 pt-4 bg-white overflow-hidden">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6">
-    <div class="text-center mb-10" appReveal>
-      <span class="text-brand-orange font-bold tracking-widest text-sm uppercase">En vidéo</span>
-      <h2 class="text-3xl sm:text-5xl font-black text-brand-navy mt-2">Découvrez MAG LINGUA INSTITUT</h2>
-      <p class="text-gray-500 mt-4 max-w-2xl mx-auto">
-        Visitez l'institut et écoutez notre équipe vous présenter les formations.
+<section id="videos" class="relative py-20 sm:py-28 bg-brand-navy text-white overflow-hidden">
+  <div class="pointer-events-none absolute -top-32 -left-24 w-96 h-96 rounded-full bg-brand-orange/20 blur-3xl"></div>
+  <div class="pointer-events-none absolute -bottom-40 -right-24 w-[28rem] h-[28rem] rounded-full bg-brand-blue/40 blur-3xl"></div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+    <!-- Texte -->
+    <div class="order-2 lg:order-1 text-center lg:text-left" appReveal>
+      <span class="inline-flex items-center gap-2 text-brand-orange-light font-bold tracking-widest text-sm uppercase">
+        <span class="h-px w-8 bg-brand-orange-light"></span> En vidéo
+      </span>
+      <h2 class="text-3xl sm:text-5xl font-black leading-tight mt-3">
+        Poussez la porte de <span class="text-brand-orange-light">l'institut</span>, avant même d'y venir
+      </h2>
+      <p class="text-white/75 mt-5 max-w-lg mx-auto lg:mx-0">
+        Découvrez nos locaux et écoutez l'équipe vous présenter les formations. Touchez une vidéo pour la regarder en grand.
       </p>
+      <ul class="mt-6 space-y-3 text-white/90 max-w-md mx-auto lg:mx-0 text-left">
+        @for (p of pointsVideos; track p) {
+          <li class="flex items-start gap-3">
+            <span class="mt-0.5 grid place-items-center w-6 h-6 rounded-full bg-brand-green/25 text-brand-green text-sm font-black shrink-0">✓</span>
+            <span>{{ p }}</span>
+          </li>
+        }
+      </ul>
+      <div class="mt-8 flex flex-wrap gap-3 justify-center lg:justify-start">
+        <button
+          type="button"
+          (click)="ouvrirVideo(0)"
+          class="shine-effect inline-flex items-center gap-2 bg-brand-orange hover:bg-brand-orange-light text-white font-bold px-7 py-3.5 rounded-full shadow-lg shadow-brand-orange/30 hover:-translate-y-1 transition-all"
+        >
+          ▶ Voir la présentation
+        </button>
+        <button
+          type="button"
+          (click)="scrollTo('contact')"
+          class="inline-flex items-center gap-2 border border-white/30 hover:bg-white/10 font-bold px-7 py-3.5 rounded-full transition-all"
+        >
+          S'inscrire
+        </button>
+      </div>
     </div>
 
-    <div class="grid sm:grid-cols-2 gap-8 justify-items-center">
-      @for (v of videos; track v.src) {
-        <figure appReveal class="w-full max-w-[320px]">
-          <div class="rounded-3xl overflow-hidden shadow-2xl ring-4 ring-brand-orange/20 bg-brand-navy aspect-[9/16]">
-            <video
-              class="w-full h-full object-cover"
-              [src]="v.src"
-              [poster]="v.poster"
-              controls
-              playsinline
-              preload="metadata"
-              [attr.aria-label]="v.titre"
-            ></video>
+    <!-- Cartes vidéo -->
+    <div class="order-1 lg:order-2 grid grid-cols-2 gap-4 sm:gap-6 max-w-md sm:max-w-lg mx-auto w-full">
+      @for (v of videos; track v.src; let i = $index) {
+        <div appReveal>
+          <div [class.mt-8]="$last" [class.sm:mt-14]="$last">
+            <button
+              type="button"
+              (click)="ouvrirVideo(i)"
+              class="group relative block w-full aspect-[9/16] rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden ring-1 ring-white/20 shadow-2xl shadow-black/40 transition duration-500 hover:-translate-y-2 hover:ring-brand-orange/60 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-brand-orange"
+              [attr.aria-label]="'Lire la vidéo : ' + v.titre"
+            >
+              <img
+                [src]="v.poster"
+                alt=""
+                loading="lazy"
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+              />
+              <span class="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/25 to-brand-navy/40"></span>
+
+              <span class="absolute top-3 left-3 text-[10px] sm:text-xs font-bold uppercase tracking-wider bg-brand-orange text-white px-2.5 py-1 rounded-full">
+                {{ v.tag }}
+              </span>
+              <span class="absolute top-3 right-3 text-[10px] sm:text-xs font-semibold bg-black/50 backdrop-blur px-2 py-1 rounded-full tabular-nums">
+                {{ v.duree }}
+              </span>
+
+              <span class="absolute inset-0 grid place-items-center">
+                <span class="relative grid place-items-center w-14 h-14 sm:w-20 sm:h-20 rounded-full bg-white text-brand-orange shadow-xl transition-transform duration-300 group-hover:scale-110">
+                  <span class="absolute inset-0 rounded-full bg-white/50 animate-ping motion-reduce:animate-none"></span>
+                  <svg class="relative w-6 h-6 sm:w-8 sm:h-8 translate-x-0.5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M8 5.14v13.72a1 1 0 0 0 1.53.85l10.9-6.86a1 1 0 0 0 0-1.7L9.53 4.29A1 1 0 0 0 8 5.14z" />
+                  </svg>
+                </span>
+              </span>
+
+              <span class="absolute bottom-0 inset-x-0 p-3 sm:p-5 text-left">
+                <span class="block font-extrabold text-sm sm:text-lg leading-tight">{{ v.titre }}</span>
+                <span class="block text-xs text-white/70 mt-1">Toucher pour regarder</span>
+              </span>
+            </button>
           </div>
-          <figcaption class="text-center font-bold text-brand-navy mt-4">{{ v.titre }}</figcaption>
-        </figure>
+        </div>
       }
     </div>
   </div>
 </section>
+
+<!-- Lecteur vidéo plein écran -->
+@if (videoCourante(); as v) {
+  <div
+    class="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="v.titre"
+    (click)="fermerVideo()"
+  >
+    <button
+      type="button"
+      (click)="fermerVideo(); $event.stopPropagation()"
+      class="absolute top-4 right-4 w-11 h-11 grid place-items-center rounded-full bg-white/15 hover:bg-white/30 text-white text-2xl leading-none transition"
+      aria-label="Fermer la vidéo"
+    >
+      ×
+    </button>
+
+    <div class="relative w-full max-w-[400px]" (click)="$event.stopPropagation()">
+      <video
+        [src]="v.src"
+        [poster]="v.poster"
+        controls
+        autoplay
+        playsinline
+        class="mx-auto block max-h-[76vh] w-auto max-w-full rounded-2xl bg-black shadow-2xl"
+      ></video>
+
+      <div class="mt-4 flex items-center justify-between gap-3 text-white">
+        <button
+          type="button"
+          (click)="changerVideo(-1)"
+          class="w-10 h-10 grid place-items-center rounded-full bg-white/15 hover:bg-white/30 transition"
+          aria-label="Vidéo précédente"
+        >
+          ‹
+        </button>
+        <div class="text-center min-w-0">
+          <div class="font-extrabold truncate">{{ v.titre }}</div>
+          <div class="text-xs text-white/60">{{ (videoActive() ?? 0) + 1 }} / {{ videos.length }}</div>
+        </div>
+        <button
+          type="button"
+          (click)="changerVideo(1)"
+          class="w-10 h-10 grid place-items-center rounded-full bg-white/15 hover:bg-white/30 transition"
+          aria-label="Vidéo suivante"
+        >
+          ›
+        </button>
+      </div>
+    </div>
+  </div>
+}
 
 <!-- ============ NOS SERVICES ============ -->
 <section id="services" class="py-24 bg-white overflow-hidden">

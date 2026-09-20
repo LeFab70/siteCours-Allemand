@@ -47,6 +47,11 @@ interface Compteur {
   standalone: true,
   imports: [FormsModule, RevealDirective, Chatbot, Counter],
   templateUrl: './app.html',
+  host: {
+    '(document:keydown.escape)': 'fermerVideo()',
+    '(document:keydown.arrowright)': 'changerVideo(1)',
+    '(document:keydown.arrowleft)': 'changerVideo(-1)',
+  },
   styleUrl: './app.css',
 })
 export class App implements OnInit, OnDestroy {
@@ -73,13 +78,47 @@ export class App implements OnInit, OnDestroy {
       src: 'videos/presentation-institut.mp4',
       poster: 'videos/presentation-institut.jpg',
       titre: "Présentation de l'institut",
+      tag: 'Visite',
+      duree: '1:31',
     },
     {
       src: 'videos/message-equipe.mp4',
       poster: 'videos/message-equipe.jpg',
       titre: "Le mot de l'équipe",
+      tag: 'Équipe',
+      duree: '0:53',
     },
   ];
+  readonly pointsVideos = [
+    'Salles climatisées et Wifi',
+    'Cours du jour et du soir, en ligne et en présentiel',
+    'Une équipe à votre écoute pour vous orienter',
+  ];
+
+  // Lecteur plein écran
+  readonly videoActive = signal<number | null>(null);
+  readonly videoCourante = computed(() => {
+    const i = this.videoActive();
+    return i === null ? null : this.videos[i];
+  });
+
+  ouvrirVideo(i: number): void {
+    this.videoActive.set(i);
+    this.doc.body.style.overflow = 'hidden';
+  }
+
+  fermerVideo(): void {
+    if (this.videoActive() === null) return;
+    this.videoActive.set(null);
+    this.doc.body.style.overflow = '';
+  }
+
+  changerVideo(sens: number): void {
+    const i = this.videoActive();
+    if (i === null) return;
+    this.videoActive.set((i + sens + this.videos.length) % this.videos.length);
+  }
+
   readonly rondesEntreeExpress = RONDES_ENTREE_EXPRESS;
   readonly sourceEntreeExpress = SOURCE_ENTREE_EXPRESS;
 
@@ -206,6 +245,7 @@ export class App implements OnInit, OnDestroy {
     if (this.timer) clearInterval(this.timer);
     if (this.avisTimer) clearInterval(this.avisTimer);
     this.doc.defaultView?.removeEventListener('scroll', this.onScroll);
+    this.doc.body.style.overflow = '';
   }
 
   private onScroll = () => {
